@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+
+\ProvidesPackage{comptype}[Comp 1 Comp 2 Package]
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[brazil]{babel}
+\RequirePackage{amsmath, mathtools, amssymb}
+\RequirePackage{hyperref} 
+\RequirePackage{listings}
+\RequirePackage{courier}
+\RequirePackage{graphicx,url}
+\RequirePackage{xcolor}
+\RequirePackage{wasysym}
+
+
+\newcommand{\dash}{---}
+\newcommand{\mono}{\texttt}
+\newcommand{\type}[1]{\textcolor{purple}{\mono{#1}}}
+\newcommand{\mb}{\mathbf}
+\newcommand{\inter}[0]{\[\photon\]\\}
+
+\newcommand{\spm}[1]{\mono{\_\_#1\_\_}}
+
+\endinput
+
+%%
+%% End of file `comp.sty`.

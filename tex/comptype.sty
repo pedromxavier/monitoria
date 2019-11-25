@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+
+\ProvidesPackage{comptype}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[brazil]{babel}
+\RequirePackage{amsmath, mathtools, amssymb}
+\RequirePackage{hyperref, url} 
+\RequirePackage{listings}
+\RequirePackage{courier}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+
+%% special text
+\newcommand{\type}[1]{\textcolor{purple}{\texttt{#1}}}
+\newcommand{\stmt}[1]{\textcolor{orange}{\texttt{#1}}}
+
+\newcommand{\dash}{---}
+
+\newcommand{\spm}[1]{\texttt{\_\_#1\_\_}}
+
+\endinput
+
+%%
+%% End of file `comp.sty`.

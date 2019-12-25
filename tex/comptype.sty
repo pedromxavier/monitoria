@@ -11,6 +11,8 @@
 \RequirePackage{graphicx, float}
 \RequirePackage{xcolor}
 
+\setlength{\parindent}{0pt}
+
 %% special text
 \newcommand{\type}[1]{\textcolor{purple}{\texttt{#1}}}
 \newcommand{\stmt}[1]{\textcolor{orange}{\texttt{#1}}}
@@ -32,8 +34,10 @@
 }
 
 \newcommand{\problem}[2][1]{
-	\subsection{#2}
-	{#1}
+	\addtocounter{subsection}{+1}
+	~\\
+	{\large\bfseries \arabic{section}.\arabic{subsection} - #2 [\copias{$\star$}{#1}]}\\
+	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} - #2 [\copias{$\star$}{#1}]}
 }
 
 \newcommand{\chap}[1]{

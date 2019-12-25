@@ -25,16 +25,18 @@
 	
 	\chap{Números (\type{int}, \type{float}, \type{complex})}
 	
-	\problem[3]{Gerando números "aleatórios"}
+	\problem[1]{Gerando números "aleatórios"}
 	
-	Gerar um numero aleatório é um pouco complicado em geral. Muitas formas de se fazer isso hoje em dia se baseiam em processos da natureza como fluidos em regime turbulento ou fenômenos quânticos. No entanto, é possível chegar perto disso com muito menos. Para começar, escolhemos uma potência de $2$, como $N = 2^{16} = 65536$. Depois disso, escolhemos um número primo no meio do caminho, digamos, $a = 25773$. Por fim, um númeror menor que o primo e que não seja potência de $2$, por exemplo, $b = 13849$.\\
-	\\
+	Gerar um numero aleatório é um pouco complicado em geral. Muitas formas de se fazer isso hoje em dia se baseiam em processos da natureza como fluidos em regime turbulento ou fenômenos quânticos. No entanto, é possível chegar perto disso com muito menos. Para começar, escolhemos uma potência de $2$, como $\mathbf{N} = 2^{16} = 65536$. Depois disso, escolhemos um número primo no meio do caminho, digamos, $\mathbf{p} = 25773$. Por fim, um númeror ímpar menor que o número primo $\mathbf{p}$, por exemplo, $\mathbf{b} = 13849$.\\
+
 	Partimos de um número $n_0$ qualquer no intervalo $[0, 25536)$ e calculamos o sucessor da seguinte forma:
-	\begin{align*}
-		\mathbf{n}_j = \mathbf{a} \times \mathbf{n}_{j-1} + \mathbf{b} \mod \mathbf{N}
-	\end{align*}
+		\begin{align*}
+			\mathbf{n}_j = \mathbf{p} \times \mathbf{n}_{j-1} + \mathbf{b} \mod \mathbf{N}
+		\end{align*}
+
 	Para obter um número "aleatório" distribuído de maneira uniforme no intervalo $[0, 1)$, basta calcular
 		$$\mathbf{x}_j = \frac{\mathbf{n}_j}{\mathbf{N}}$$
+		
 	\textbf{Desafio:} Faça o seu próprio gerador de números aleatórios!
 	
 	\chap{\textit{Strings} e Texto (\type{str})}
@@ -62,7 +64,7 @@
 	
 	\problem[2]{Eratóstenes de Cirene}
 	
-	\chap{Recursividade}	
+	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}	
 	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	

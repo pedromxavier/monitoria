@@ -19,7 +19,27 @@
 
 \newcommand{\spm}[1]{\texttt{\_\_#1\_\_}}
 
+\newcommand{\copias}[2]{
+\begingroup
+	\newcount\foo
+	\foo=#2
+	\loop
+	  #1
+	  \advance \foo -1
+	\ifnum \foo>0
+	\repeat
+\endgroup
+}
 
+\newcommand{\problem}[2][1]{
+	\subsection{#2}
+	{#1}
+}
+
+\newcommand{\chap}[1]{
+	\pagebreak
+	\section{#1}
+}
 
 \endinput
 

@@ -2,28 +2,7 @@
 
 \usepackage{comptype}
 
-\newcommand{\copias}[2]{
-\begingroup
-	\newcount\foo
-	\foo=#2
-	\loop
-	  #1
-	  \advance \foo -1
-	\ifnum \foo>0
-	\repeat
-\endgroup
-}
 
-\newcommand{\problem}[2][1]{
-	\subsection{#2
-		\copias{$\star$}{#1}
-		}
-}
-
-\newcommand{\chap}[1]{
-\pagebreak
-\section{#1}
-}
 
 \title{Lista de Computação I (Python) \\ {\normalsize DCC / UFRJ}}
 \author{Pedro Maciel Xavier (monitor)\\ \texttt{pedromxavier@poli.ufrj.br}}
@@ -42,36 +21,69 @@
 	
 	\tableofcontents
 	
+	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
+	
 	\chap{Números (\type{int}, \type{float}, \type{complex})}
 	
-	\problem[1]{}
+	\problem[3]{Gerando números "aleatórios"}
 	
-	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
+	Gerar um numero aleatório é um pouco complicado em geral. Muitas formas de se fazer isso hoje em dia se baseiam em processos da natureza como fluidos em regime turbulento ou fenômenos quânticos. No entanto, é possível chegar perto disso com muito menos. Para começar, escolhemos uma potência de $2$, como $N = 2^{16} = 65536$. Depois disso, escolhemos um número primo no meio do caminho, digamos, $a = 25773$. Por fim, um númeror menor que o primo e que não seja potência de $2$, por exemplo, $b = 13849$.\\
+	\\
+	Partimos de um número $n_0$ qualquer no intervalo $[0, 25536)$ e calculamos o sucessor da seguinte forma:
+	\begin{align*}
+		\mathbf{n}_j = \mathbf{a} \times \mathbf{n}_{j-1} + \mathbf{b} \mod \mathbf{N}
+	\end{align*}
+	Para obter um número "aleatório" distribuído de maneira uniforme no intervalo $[0, 1)$, basta calcular
+		$$\mathbf{x}_j = \frac{\mathbf{n}_j}{\mathbf{N}}$$
+	\textbf{Desafio:} Faça o seu próprio gerador de números aleatórios!
 	
 	\chap{\textit{Strings} e Texto (\type{str})}
 
-	\problem[3]{DNA}
+	\problem[1]{DNA}
 	
 		Uma sequência de DNA (\emph{ácido desoxirribonucleico}) é composta por 4 nucleotídeos: \textbf{A}denina, \textbf{C}itosina, \textbf{G}uanina \textbf{T}imina. No RNA mensageiro (mRNA), a \textbf{T}imina está ausente, e dá lugar para a \textbf{U}racila. Quando um ribossomo realiza a transcrição de DNA em mRNA ele segue uma regra muito simples:
 		
 		\begin{figure}[H]
-		\begin{center}
-			\large		
-			\begin{tabular}{ccc}
-				A & $\rightarrow$ & U\\
-				T & $\rightarrow$ & A\\
-				C & $\rightarrow$ & G\\
-				G & $\rightarrow$ & C\\
-			\end{tabular}
-		\end{center}
+			\begin{center}
+				\large		
+				\begin{tabular}{ccc}
+					A & $\rightarrow$ & U\\
+					T & $\rightarrow$ & A\\
+					C & $\rightarrow$ & G\\
+					G & $\rightarrow$ & C\\
+				\end{tabular}
+			\end{center}
 		\end{figure}
+	Faça uma função que traduza uma fita de DNA (\type{str}) como faria um ribossomo.
+	
+	\problem[2]{}
 	
 	\chap{Listas e Tuplas (\type{list}, \type{tuple})}
 	
 	\problem[2]{Eratóstenes de Cirene}
 	
+	\chap{Recursividade}	
+	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	
+	\problem[2]{Sequência de Collatz}
+	
+	A sequência de Collatz é descrita recursivamente por:
+	{\large
+	\begin{align*}
+		f(n) \triangleq \begin{cases}
+		3n + 1, &\text{ se } n \text{ for ímpar}\\
+		n \div 2, &\text{ se } n \text{ for par}
+		\end{cases}
+	\end{align*}
+	}
+	Por exemplo, começamos com $n = 26$. Após sucessivas aplicações temos:
+		$$26 \to 13 \to 40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$$
+	Isso nos dá uma sequência com $11$ números. $40$ é maior que $26$, mas sua sequência só teria $9$ números.\\
+	\\
+	Ainda não se sabe se todos os números induzem uma sequência que termina em $1$. No entanto, até agora não foi encontrado um número sequer em que isso não tenha acontecido!\\
+	\\
+	\textbf{Deasfio: } Faça uma função que calcule o comprimento da sequência gerada a partir de um número natural $n$ qualquer.
 	\chap{Conjuntos e Dicionários (\type{set}, \type{dict})}
 	
 	\problem[2]{Mensagem cifrada}	

@@ -4,9 +4,9 @@
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[brazil]{babel}
-\RequirePackage{amsmath, mathtools, amssymb}
+\RequirePackage{amsmath, mathtools, amssymb, wasysym}
 \RequirePackage{hyperref, url} 
-\RequirePackage{listings}
+\RequirePackage{listings, textcomp}
 \RequirePackage{courier}
 \RequirePackage{graphicx, float}
 \RequirePackage[thinlines]{easytable}
@@ -14,10 +14,61 @@
 
 \setlength{\parindent}{0pt}
 
+
+%% Python IDLE Colors
+\definecolor{pykeywords}{RGB}{255, 119, 0}
+\definecolor{pybuiltins}{RGB}{144, 48, 144}
+\definecolor{pycomments}{RGB}{221, 0, 0}
+\definecolor{pynames}{RGB}{0, 0, 255}
+\definecolor{pystrings}{RGB}{0, 170, 0}
+
+\lstset{
+	basicstyle=\ttfamily,
+	language=Python,
+	mathescape=true,
+	numbers=left,
+	captionpos=b,
+	showspaces=false,
+	showtabs=false,
+	tabsize=4,
+	stringstyle=\ttfamily\color{pystrings},
+	commentstyle=\ttfamily\color{pycomments},
+	keywordstyle=\color{pykeywords},
+	keywordstyle=[2]\color{pybuiltins},
+	keywords=[2]{abs, delattr, hash, memoryview, set, all, dict, help, min, setattr, any, dir, hex, next, slice, ascii, divmod, id, object, sorted, bin, enumerate, input, oct, staticmethod, bool, eval, int, open, str, breakpoint, exec, isinstance, ord, sum, bytearray, filter, issubclass, pow, super, bytes, float, iter, print, tuple, callable, format, len, property, type, chr, frozenset, list, range, vars, classmethod, getattr, locals, repr, zip, compile, globals, map, reversed, __import__, complex, hasattr, max, round},
+%%	identifierstyle=\color{pynames},
+	upquote=true,
+	basicstyle=\ttfamily,
+	rulecolor=\color{gray},
+	xleftmargin=1cm,
+	xrightmargin=1cm,
+	frame=single,
+	inputencoding=utf8,
+	extendedchars=true,
+}
+
+%% UTF-8 Support
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}
+
 %% special text
-\newcommand{\type}[1]{\textbf{\textcolor{purple}{\texttt{#1}}}}
-\newcommand{\stmt}[1]{\textbf{\textcolor{orange}{\texttt{#1}}}}
-\newcommand{\str}[2]["]{\textbf{\textcolor{Green}{\texttt{#1#2#1}}}}
+\newcommand{\type}[1]{\textbf{\textcolor{pybuiltins}{\texttt{#1}}}}
+\newcommand{\stmt}[1]{\textbf{\textcolor{pykeywords}{\texttt{#1}}}}
+\newcommand{\str}[2]["]{\textbf{\textcolor{pystrings}{\texttt{#1#2#1}}}}
 
 \newcommand{\dash}{---}
 
@@ -39,8 +90,8 @@
 \newcommand{\problem}[2][1]{
 	\addtocounter{subsection}{+1}
 	~\\
-	{\large\bfseries \arabic{section}.\arabic{subsection} - #2 [\copias{$\star$}{#1}]}\\
-	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} - #2 [\copias{$\star$}{#1}]}
+	{\large\bfseries \arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}\\
+	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}
 }
 
 \newcommand{\chap}[1]{
@@ -51,7 +102,7 @@
 \newcommand{\figura}[3][1]{
 \begin{center}\begin{figure}[H]
 	\centering
-	\includegraphics[scale=#1]{#2}
+	\includegraphics[#1]{#2}
 	\caption{#3}
 \end{figure}\end{center}
 }

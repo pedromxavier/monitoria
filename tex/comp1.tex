@@ -193,9 +193,32 @@ def f(x):
 	
 	\begin{interlude}{\texttt{csv}}
 	
-	Arquivos no formato \texttt{.csv} (\textit{comma separated values}) são muito utilizados para representar tabelas em um arquivo de texto. São facilmente lidos por programas como o Excel$^{\tiny \text{TM}}$.
+	Arquivos no formato \texttt{.csv} (\textit{comma separated values}) são muito utilizados para representar tabelas em um arquivo de texto. São facilmente lidos por programas como o Excel$^{\tiny \text{TM}}$.\\
 	
+	Por exemplo, o arquivo
 	
+	\begin{lstlisting}
+nome,CPF,idade
+João,82252631704,11
+Pedro,12432236702,21
+Anna,13241232392,15
+	\end{lstlisting}
+	
+	é interpretado como
+	
+	\begin{center}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	nome  & CPF         & idade\\
+	\hline 
+	João  & 82252631704 &11\\
+	\hline
+	Pedro & 12432236702 &21\\
+	\hline
+	Anna  & 13241232392 &15\\
+	\hline
+	\end{tabular}
+	\end{center}
 	
 	\end{interlude}
 	

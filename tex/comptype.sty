@@ -33,7 +33,7 @@
 	tabsize=4,
 	stringstyle=\ttfamily\color{pystrings},
 	commentstyle=\ttfamily\color{pycomments},
-	morekeywords={assert},
+	morekeywords={assert, True, False},
 	keywordstyle=\color{pykeywords},
 	keywordstyle=[2]\color{pybuiltins},
 	keywords=[2]{abs, delattr, hash, memoryview, set, all, dict, help, min, setattr, any, dir, hex, next, slice, ascii, divmod, id, object, sorted, bin, enumerate, input, oct, staticmethod, bool, eval, int, open, str, breakpoint, exec, isinstance, ord, sum, bytearray, filter, issubclass, pow, super, bytes, float, iter, print, tuple, callable, format, len, property, type, chr, frozenset, list, range, vars, classmethod, getattr, locals, repr, zip, compile, globals, map, reversed, __import__, complex, hasattr, max, round},
@@ -41,8 +41,8 @@
 	upquote=true,
 	basicstyle=\ttfamily,
 	rulecolor=\color{gray},
-	xleftmargin=1cm,
-	xrightmargin=1cm,
+	xleftmargin=0.5cm,
+	xrightmargin=0cm,
 	frame=single,
 	inputencoding=utf8,
 	extendedchars=true,
@@ -97,7 +97,7 @@
 	\addtocounter{subsection}{+1}
 	~\\
 	{\large\bfseries \arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}\\
-	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}
+	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} \hspace{5pt} #2 $#1\star$}
 }
 
 \newcommand{\chap}[1]{

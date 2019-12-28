@@ -25,7 +25,7 @@
 	
 	Não sei se vai ter isso aqui não em.
 
-	\section{Orientação a Objeto (\stmt{class})}
+	\chap{Orientação a Objeto (\stmt{class})}
 	
 	\problem[1]{O Bidicionário}
 	
@@ -136,8 +136,6 @@ class Fracao(object):
 		\item Divisão de polinômios (\texttt{f/g} e \texttt{f\%g}) , que devem retornar respectivamente o quociente $q(x)$ e o resto $r(x)$ tais que $f(x) = g(x) q(x) + r(x)$.
 	\end{enumerate}
 	
-	\problem[3]{Grupos}
-	
 	\begin{interlude}{Conjuntos}
 	
 	No \texttt{Python} temos um tipo muito bacana, mas muito mesmo, chamado \type{set}. Esse carinha simula um conjunto do ponto de vista matemático, ou seja, é uma coleção de objetos distintos. Um \type{set} pode ser criado usando-se outro objeto ou informando os elementos entre colchetes:
@@ -158,6 +156,8 @@ class Fracao(object):
 	O \type{set} permite realizar diversas operações entre conjuntos, sendo as mais importantes: a diferença (\texttt{-}), a união (\texttt{|}, \emph{ou binário}) e a interseção (\texttt{\&}, \emph{e binário}). 
 	
 	\end{interlude}
+	
+	\problem[5]{Grupos}
 	
 	Em Álgebra, um Grupo $G = (A, \ast)$ é formado por um conjunto $A$ e uma operação qualquer $\ast$, quando valem as seguintes regras:
 	
@@ -195,7 +195,7 @@ Exception: Isso não é grupo!
 		\item A visualização do grupo mostre os elementos entre colchetes usando o método \spm{repr}.
 	\end{enumerate}
 
-	\subsection{Subparte I: Produto}
+	\subsubsection{Subparte I: Produto}
 	O produto entre dois grupos é dado da seguinte forma:
 	\[GH := \{g \ast h : g \in G, h\in H\} \]
 	Defina o método \spm{mul} para atender a esse propósito.
@@ -258,15 +258,12 @@ class Som(object):
         
 class Musica(list):
 
-    def __init__(self, partitura, tempo, nome="",autor=""):
+    def __init__(self, partitura, tempo):
         ...
         
-    def __repr__(self):
-        # mostra "<nome>", <autor> (<tempo> bps)
-        ...
-        
-    def __call__(self):
-        # toca a musica
+    def play(self):
+        """ Toca a musica.
+        """
         ...
 	\end{lstlisting}
 	Um \texttt{Som} deve ter:
@@ -314,7 +311,7 @@ class Musica(list):
 	Dica:
 	Implemente os métodos \spm{invert} e \spm{neg} para auxiliar na definição de \spm{truediv} e \spm{sub}, respectivamente.
 	
-	\section{Interface Gráfica (\texttt{Tkinter})}
+	\chap{Interface Gráfica (\texttt{tkinter})}
 	
 		
 	\problem[2]{O Triângulo de Sierpinsky}
@@ -323,9 +320,36 @@ class Musica(list):
 	
 	\figura[height=200pt]{sierpinsky.png}{Triângulo de Sierpinsky}
 
-	Ela é composta por triângulos equiláteros dispostos de forma que cada triângulo contém três outros em seu interior, cada um com $\frac{1}{3}$ do lado do triângulo original.\\
+	Ela é composta por triângulos equiláteros dispostos de forma que cada triângulo contém três outros em seu interior, cada um com $\frac{1}{2}$ do lado do triângulo original.\\
 	
-	\textbf{Desafio:} Desenhe essa estrutura usando o \texttt{Tkinter} ou o \texttt{turtle}. Crie uma função para compôr a figura de forma recursiva.
+	\textbf{Desafio:} Desenhe essa forma usando o \texttt{tkinter} ou o \texttt{turtle}. Crie uma função para compôr a figura de forma recursiva.
+	
+	\problem[3]{Pôr-do-Sol \cite{jonas}}
+	
+	Todos os dias o Sol se põe no horizonte da mesma maneira.
+	
+	\textbf{Desafio:} Faça uma vizualização do pôr-do-Sol no \texttt{tkinter}, da forma que quiser. Se você não se sente muito inspirado, segue a receita do bolo:
+	
+	\begin{enumerate}
+		\item Crie um \texttt{Canvas}. \textbf{Dica:} uma vez criado o \texttt{Canvas}, posicione ele com o método \texttt{pack}, passando as opções \texttt{expand=\stmt{True}} e \texttt{fill=\str{both}} para que o \texttt{Cavas} ocupe toda a tela.
+		\item Faça primeiro o céu. Você pode criar um retângulo ou simplesmeste alterar a propriedade \texttt{bg} do \texttt{Canvas} (cor do \textit{background}).
+	\end{enumerate}
+
+	\begin{lstlisting}
+import tkinter as tk
+
+class Janela:
+	def __init__(self, root):
+		self.root = root
+		
+		self.canvas = tk.Canvas(self.root)
+		self.canvas.pack(expand=True, fill="both")
+		
+		
+root = tk.Tk()
+self = Janela(root)
+root.mainloop()
+	\end{lstlisting}
 
 	\problem[3]{O Método de Monte Carlo}
 	
@@ -335,7 +359,7 @@ class Musica(list):
 
 	Queremos então calcular a área de um círculo cujo raio é $1$. Sabemos de antemão que valor da área é $\pi$, e vamos então usar o método acima para estimar o seu valor numérico.\\
 
-	Faça duas janelas usando o \texttt{Tkinter}. A primeira mostra onde os pontos estão sendo posicionados, colorindo os que caem dentro de \textcolor{blue}{azul} e os que caem fora de \textcolor{red}{vermelho}. Na segunda tela, mostre em tempo real a aproximação para a área em azul conforme os pontos vão sendo posicionados. \\
+	Faça duas janelas usando o \texttt{tkinter}. A primeira mostra onde os pontos estão sendo posicionados, colorindo os que caem dentro de \textcolor{blue}{azul} e os que caem fora de \textcolor{red}{vermelho}. Na segunda tela, mostre em tempo real a aproximação para a área em azul conforme os pontos vão sendo posicionados. \\
 	
 	\figura[width=\textwidth]{monte_carlo.png}{Cálculo de $\pi$ pelo método de Monte Carlo}
 	
@@ -358,16 +382,30 @@ class Musica(list):
 	
 	\problem[3]{Música IV - O Piano}
 	
-	\textbf{Desafio:} Use os resultados das etapas enteriores( \textbf{Musical} e construa um Piano Virtual com o \texttt{Tkinter}. Desenhe as teclas em um \texttt{Canvas} e use o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo.
+	\textbf{Desafio:} Use os resultados das etapas enteriores( \textbf{Musical} e construa um Piano Virtual com o \texttt{tkinter}. Desenhe as teclas em um \texttt{Canvas} e use o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo.
 
+	\chap{Métodos numéricos (\texttt{Numpy})}
+
+	\begin{interlude}{Aritmética de ponto-flutuante (\type{float})}
 	
-	\section{Métodos numéricos (\texttt{Numpy})}
+	\end{interlude}
 	
-	\section{Plotagem de Gráficos (\texttt{Matplotlib})}
+	\problem[5]{Computação Quântica}
+	
+	
+	\chap{Plotagem de Gráficos (\texttt{Matplotlib})}
+	
+	\begin{interlude}{\texttt{nan}}
+	
+	\end{interlude}
+	
+	\chap{Conexão e Redes (\texttt{socket})}	
 	
 	\begin{thebibliography}{99}
 	%\bibitem{lcarvalho} Prof. Leonardo Carvalho (2015)
 	\bibitem{asad} Prof. Pedro Asad (2016)
+	\bibitem{brunno} Prof. Brunno Goldstein (2016)
 	\bibitem{esperanca} Prof. Claudio Esperança (2018)
+	\bibitem{jonas} Prof. Jonas Knopman (2018)
 	\end{thebibliography}
 \end{document}

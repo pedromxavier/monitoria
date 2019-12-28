@@ -146,7 +146,22 @@
 	
 	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}
 	
+	\begin{interlude}{Decoradores}
 	
+	Decoradores ...
+	
+	\begin{lstlisting}
+def dec(f):
+	def g(x):
+		return -f(x)
+	return g
+	
+@dec
+def f(x):
+	return x
+	\end{lstlisting}	
+	
+	\end{interlude}
 	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	
@@ -176,5 +191,12 @@
 	
 	\chap{Arquivos (\stmt{with}, \type{open})}
 	
+	\begin{interlude}{\texttt{csv}}
+	
+	Arquivos no formato \texttt{.csv} (\textit{comma separated values}) são muito utilizados para representar tabelas em um arquivo de texto. São facilmente lidos por programas como o Excel$^{\tiny \text{TM}}$.
+	
+	
+	
+	\end{interlude}
 	
 \end{document}

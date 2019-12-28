@@ -5,12 +5,6 @@
 \title{Lista de Computação II (Python) \\ {\normalsize DCC / UFRJ}}
 \author{Pedro Maciel Xavier (monitor)\\ \texttt{pedromxavier@poli.ufrj.br}}
 
-\newcommand{\inter}{
-\rule{\textwidth}{0.4pt}
-}
-
-\newcommand{\mb}[1]{\mathbf{#1}}
-
 \begin{document}
 	\maketitle
 	\section*{Introdução}
@@ -30,10 +24,6 @@
 	\section*{Revisão de Computação I}
 	
 	Não sei se vai ter isso aqui não em.
-	
-	\section{Orientação a Objeto (\stmt{class})}
-	
-	\section{Interface Gráfica (\texttt{Tkinter})}
 
 	\section{Orientação a Objeto (\stmt{class})}
 	
@@ -94,33 +84,40 @@ class Bidict(dict):
 	
 	Faça também a classe \texttt{BolaDeFesta}, que deve furar sempre que quicar. Dê a ela um som de estouro interessante.
 	
-	\subsection{Frações $\star$}
+	\problem[1]{Frações}
 	Um número racional $r \in \mathbb{Q}$ é aquele que pode ser escrito como: 
 	\[r = \frac{p}{q} ; p,q \in \mathbb{Z} ; q \neq 0\]
-	Crie uma classe \texttt{Fracao} que implemente as seguintes operações e métodos:
+	\textbf{Desafio:} Crie uma classe \texttt{Fracao} que implemente as seguintes operações e métodos:
 	\begin{enumerate}
 		\item Um método que simplifique a fração.
-		\item \texttt{+}, \texttt{-}, \texttt{*}, \texttt{**} e \texttt{/}.
-		\item \texttt{-} (\spm{neg}) e \texttt{~} (\spm{invert}).
+		\item As operções:
+		\begin{itemize}
+			\item \texttt{+} (\spm{add})
+			\item \texttt{-} (\spm{sub})
+			\item \texttt{*} (\spm{mul})
+			\item \texttt{**} (\spm{pow})
+			\item \texttt{/} (\spm{truediv})
+			\item \texttt{-} (\spm{neg})
+			\item \texttt{\til} (\spm{invert}).
+		\end{itemize}
 		\item \spm{repr} que retorna \texttt{"p|q"}.
 		\item \spm{float}, que calcula a divisão em ponto-flutuante.
 	\end{enumerate}
 
 	\begin{lstlisting}
-	class Fracao(object):
-	    
-	    def __init__(self, p, q):
-	        assert type(p) is int
-	        assert type(q) is int
-	        assert q != 0
-	        ...
-	        
+class Fracao(object):
+    
+    def __init__(self, p, q):
+        assert type(p) is int
+        assert type(q) is int
+        assert q != 0
+        ...	        
 	\end{lstlisting}
 	
-	\subsection{Polinômios \cite{esperanca} $\star\star$}
+	\problem[2]{Polinômios \cite{esperanca}}
 	Um polinômio de grau $n$ é aquele da forma
 	\[p(x) = \sum_{i=0}^{n} a_{i} x^{i}=a_{0} + a_{1}x + \dots + a_{n} x^{n}.\]
-	Sabendo isso, faça uma classe \texttt{Polinomio} que implemente:
+	\textbf{Desafio:} Sabendo isso, faça uma classe \texttt{Polinomio} que implemente:
 	\begin{enumerate}
 		\item A definição de um coeficiente do polinômio através do método \spm{setitem}, ou seja, \texttt{p[2] = 3} faria com que o coeficiente $a_{2}$ do polinômio $p$ tivesse valor $3$.
 		
@@ -130,19 +127,19 @@ class Bidict(dict):
 		
 		\item E por fim, a avaliação da função num ponto $x$, usando o método especial \spm{call}.
 	\end{enumerate}
-	Bônus:
+	
+	\textbf{Desafio Bônus:}
 	\begin{enumerate}
-		\item O método especial \spm{repr} que deve retornar uma \type{string} que represente o polinômio $2 + x + 3x^{2}$ na forma \texttt{"2x\^{}0 + 1x\^{}1 + 3x\^{}2"}, por exemplo.
+		\item O método especial \spm{repr} que deve retornar uma \type{string} que represente o polinômio $2 + x + 3x^{2}$ na forma \texttt{"2 + x + 3x\^{}2"}, por exemplo.
 		\item Duas funções, \texttt{Polinomio.integral} e \texttt{Polinomio.derivada} que retornem os respectivos polinômios resultantes destas operações.
 		
 		\item Divisão de polinômios (\texttt{f/g} e \texttt{f\%g}) , que devem retornar respectivamente o quociente $q(x)$ e o resto $r(x)$ tais que $f(x) = g(x) q(x) + r(x)$.
 	\end{enumerate}
 	
-	\subsection{Grupos $\star\star\star$}
+	\problem[3]{Grupos}
 	
-	\[\photon\]
+	\begin{interlude}{Conjuntos}
 	
-	\subsubsection{Interlúdio: Conjuntos}
 	No \texttt{Python} temos um tipo muito bacana, mas muito mesmo, chamado \type{set}. Esse carinha simula um conjunto do ponto de vista matemático, ou seja, é uma coleção de objetos distintos. Um \type{set} pode ser criado usando-se outro objeto ou informando os elementos entre colchetes:
 	
 	\begin{lstlisting}
@@ -160,7 +157,7 @@ class Bidict(dict):
 	
 	O \type{set} permite realizar diversas operações entre conjuntos, sendo as mais importantes: a diferença (\texttt{-}), a união (\texttt{|}, \emph{ou binário}) e a interseção (\texttt{\&}, \emph{e binário}). 
 	
-	\[\photon\]\\
+	\end{interlude}
 	
 	Em Álgebra, um Grupo $G = (A, \ast)$ é formado por um conjunto $A$ e uma operação qualquer $\ast$, quando valem as seguintes regras:
 	
@@ -206,7 +203,7 @@ Exception: Isso não é grupo!
 	\subsubsection{Subparte II: Quociente}
 	Existe uma operação entre grupos chamada \emph{quociente} definida por:
 	\[G/H := \{gH : g \in G\} = \{\{g \ast h: h \in H\} : g \in G\}\]
-	Essa operação deve retornar um \emph{conjunto de grupos} e isso só é possível se o método \spm{hash} estiver definido como no modelo. Implemente essa operação usando o método \spm{div}.
+	Essa operação deve retornar um \emph{conjunto de grupos} e isso só é possível se o método \spm{hash} estiver definido como no modelo. Implemente essa operação usando o método \spm{truediv}.
 	
 	\subsubsection{Subparte III: Subgrupos}
 	Um Subgrupo $H$ de um Grupo $G$, que escrevemos $H < G$, é aquele cujo conjunto é subconjunto de $G$ e é $H$ também um Grupo. O tipo \type{set} já implementa os operadores \texttt{>}, \texttt{>=}, \texttt{<}, \texttt{<=} e \texttt{==} comparando dois objetos do ponto de vista dos conjuntos. Reescreva os métodos \spm{gt}, \spm{ge}, \spm{lt}, \spm{le} e \spm{eq}, respectivamente, para dizer verificar, por exemplo, se \texttt{H} é subgrupo de \texttt{G} através da expressão \texttt{H < G}.
@@ -231,8 +228,8 @@ Exception: Isso não é grupo!
 	\[\frac{f(\bar{n} + 12)}{f(\bar{n})} = \frac{440 \times \sqrt[12]{2^{\bar{n} + 12}}}{440 \times \sqrt[12]{2^{\bar{n}}}} = 2\]
 	Isso nos diz que cada vez que avançamos até a próxima repetição de uma nota, dobramos a frequência! Na escala de \emph{dó maior}, que todos sabemos de cor, isso equivale a avançar uma \emph{oitava acima}.
 	
-	\subsubsection{Interlúdio: \texttt{Beep}}
-	\inter
+	\begin{interlude}{\texttt{Beep}}
+	
 	Um jeito fácil de fazer barulho no computador é usando a função \texttt{Beep}. Se você usa o \texttt{Python} no \texttt{Windows} boas notícias: você só vai precisar importar a função \texttt{Beep} do módulo \texttt{winsound}.\\
 	\\
 	\texttt{>>> Beep(440, 1000)}
@@ -248,7 +245,8 @@ import os
 def Beep(f, ms):
     os.system("beep -f %i -l %i" % (f, ms))
 	\end{lstlisting}
-	\inter
+	
+	\end{interlude}
 	
 	Vamos construir agora um sensacional tocador de músicas! Você deve fazer duas classes: \texttt{Som} e \texttt{Musica} conforme os protótipos a seguir:
 	
@@ -288,18 +286,17 @@ class Musica(list):
 	Tendo essa parafernália toda em mãos, construiremos esses objetos de forma que a música seja tocada através da função \texttt{Beep(f, ms)}, que recebe a frequência \texttt{f} da nota e a sua duração \texttt{ms} em \emph{milissegundos}.
 
 	\problem[3]{Quaterniões!}
+	
 	Não contente com os números complexos ($\mathbb{C}$) da forma $z = a + b\mb{i}$, a turma da matemática trouxe pra gente um ser ainda mais esquisito: o conjunto dos \emph{Quaternions} ($\mathbb{H}$).
 	
-	\[	
-	\begin{gathered}
-	q \in \mathbb{H} \iff q = a + b \mb{i} + c \mb{j} + d \mb{k} : \, a,b,c,d \in \mathbb{R}\\
-	\mb{i} \times \mb{j} = -(\mb{j} \times \mb{i}) = \mb{k}\\
-	\mb{j} \times \mb{k} = -(\mb{k} \times \mb{j}) = \mb{i}\\
-	\mb{k} \times \mb{i} = -(\mb{i} \times \mb{k}) = \mb{j}\\
-	\mb{i} \times \mb{j} \times \mb{k} = -1 \nonumber	
-	\end{gathered}
-	\]
-	\\
+	\begin{align*}
+	q \in \mathbb{H} \iff q &= a + b \mb{i} + c \mb{j} + d \mb{k} : \, a,b,c,d \in \mathbb{R}\\
+	\mb{i} \times \mb{j} &= -(\mb{j} \times \mb{i}) = \mb{k}\\
+	\mb{j} \times \mb{k} &= -(\mb{k} \times \mb{j}) = \mb{i}\\
+	\mb{k} \times \mb{i} &= -(\mb{i} \times \mb{k}) = \mb{j}\\
+	\mb{i} \times \mb{j} \times \mb{k} &= -1	
+	\end{align*}
+	
 	Com regras de soma convencionais, similares aos números reais e complexos, mas com uma multiplicação que mais parece o produto externo entre vetores, implemente uma classe \texttt{Quaternion}, que é criada a partir dos seus $4$ coeficientes reais e implementa:
 	\begin{enumerate}
 		\item O operador de soma \texttt{+} (\spm{add})
@@ -311,15 +308,15 @@ class Musica(list):
 	Extra:
 	\begin{enumerate}
 		\item O módulo do quaternião, através da função \type{abs}(q), implementada pelo método especial \spm{abs}
-		\item A divisão \texttt{\slash} (\spm{div})
+		\item A divisão \texttt{\slash} (\spm{truediv})
 	\end{enumerate}
 
 	Dica:
-	Implemente os métodos \spm{invert} e \spm{neg} para auxiliar na definição de \spm{div} e \spm{sub}, respectivamente.
+	Implemente os métodos \spm{invert} e \spm{neg} para auxiliar na definição de \spm{truediv} e \spm{sub}, respectivamente.
 	
-	\pagebreak
+	\section{Interface Gráfica (\texttt{Tkinter})}
 	
-	\section{Interface Gráfica}
+		
 	\problem[2]{O Triângulo de Sierpinsky}
 	
 	A figura a seguir chama-se \emph{Triângulo de Sierpinsky}:
@@ -361,7 +358,8 @@ class Musica(list):
 	
 	\problem[3]{Música IV - O Piano}
 	
-	O Desafio agora é pegar os resultados da Questão {\bf Musical} e construir um Piano Virtual com o \texttt{Tkinter}! Desenhe as teclas em um \texttt{Canvas} e use o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo.
+	\textbf{Desafio:} Use os resultados das etapas enteriores( \textbf{Musical} e construa um Piano Virtual com o \texttt{Tkinter}. Desenhe as teclas em um \texttt{Canvas} e use o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo.
+
 	
 	\section{Métodos numéricos (\texttt{Numpy})}
 	

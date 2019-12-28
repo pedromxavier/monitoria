@@ -52,6 +52,26 @@
 	
 	\textbf{Desafio:} Faça uma função que calcule a frequência $\mathbf{f}$ de cada nota, a partir do seu número, supondo que $\mathbf{f}(0) = 440\text{Hz}$.
 	
+	\problem[1]{Diferencial I}
+	
+	Aprendemos em Cálculo I que a derivada de uma função $f(x)$ pode ser calculada como:
+
+		$$f'(x) = \lim_{h \to 0} $$
+	
+	Se escolhemos um $h$ pequeno, algo como $0.001$, podemos deixar a ideia de limite de lado e partir para uma aproximação
+	
+		$$f'(x) \approx \frac{f(x + h) - f(x)}{h} \text{ para } h \ll 1$$
+
+	Outras aproximações razoáveis são	
+		\begin{align*}
+		f'(x) &\approx \frac{f(x + h) - f(x - h)}{2h}\\
+		\\		
+		f'(x) &\approx \frac{\im{f(x + \mb{i}h)}}{h} 
+		\end{align*}	
+	sendo essa última um pouco mais holística.\\
+	
+	\textbf{Desafio:} Faça uma função \texttt{d(f, h)} que receba uma função \texttt{f} e um número bem pequeno \texttt{h} e retorne uma outra função, que aproxime a derivada de \texttt{f}.
+	
 	\chap{\textit{Strings} e Texto (\type{str})}
 
 	\problem[1]{DNA}
@@ -91,7 +111,16 @@
 		Ca\textbf{rr}o\textbf{ss}el $\to$ Ca\textbf{r}-\textbf{r}o\textbf{s}-\textbf{s}el
 	\end{center}
 	
-	As exceções nada mais são do que um conjunto de palavras que já sabemos como separar, armazenadas em pares da forma (palavra, separação).
+	As exceções nada mais são do que um conjunto de palavras que já sabemos como separar, armazenadas em pares da forma (palavra, separação).\\
+	
+	\textbf{Desafio:} Crie um conjunto de regras para que, dada uma palavra (\type{str}), a função retorne uma lista com a respectiva separação silábica. Exemplo:
+	
+	\begin{lstlisting}[caption="Separando sílabas"]
+>>> f('pássaro')
+['pás', 'sa', 'ro']
+>>> f('carrossel')
+['car', 'ros', 'sel']
+	\end{lstlisting}
 	
 	
 	\chap{Listas e Tuplas (\type{list}, \type{tuple})}
@@ -100,11 +129,24 @@
 	
 	O Eratóstenes foi um cara legal que viveu em 200 a.C., bolou um crivo e calculou a curvatura da terra.
 	
-	\figura[0.5]{eratostenes.png}{Eratóstenes de Cirene}
+	\figura[width=168pt]{eratostenes.png}{Eratóstenes de Cirene}
 	
-	Uma forma de saber quem são os números primos é através de um \textbf{crivo}.
+	Um \textbf{crivo} é uma forma de saber quem são os números primos até um determinado limite $\mb{N}$. O Crivo de Eratóstenes funciona de forma bem simples:
 	
-	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}	
+	\begin{enumerate}
+		\item Escrevemos em uma tabela todos os números de 0 até $\mb{N}$.
+		\item Riscamos o 0 e o 1.
+		
+		\item Se um número não estiver riscado, riscamos todos os múltiplos deste, menos o próprio.
+		
+		\item Andamos para o próximo número e repetimos a etapa anterior.		
+	\end{enumerate}
+	
+	Uma maneira interessante de fazer isso é criando uma lista de tamanho $\mb{N} + 1$, ou seja, cujos índices vão de 0 até $\mb{N}$.
+	
+	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}
+	
+	
 	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	

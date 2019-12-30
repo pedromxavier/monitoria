@@ -315,7 +315,7 @@ class Musica(list):
 	\chap{Interface Gráfica (\texttt{tkinter})}
 	
 		
-	\problem[2]{O Triângulo de Sierpinsky}
+	\problem[3]{O Triângulo de Sierpinsky}
 	
 	A figura a seguir chama-se \emph{Triângulo de Sierpinsky}:
 	
@@ -327,13 +327,18 @@ class Musica(list):
 	
 	\problem[3]{Pôr-do-Sol \cite{jonas}}
 	
-	Todos os dias o Sol se põe no horizonte da mesma maneira.
+	Todos os dias o Sol se põe no horizonte da mesma maneira.\\
 	
 	\textbf{Desafio:} Faça uma vizualização do pôr-do-Sol no \texttt{tkinter}, da forma que quiser. Se você não se sente muito inspirado, segue a receita do bolo:
 	
 	\begin{enumerate}
-		\item Crie um \texttt{Canvas}. \textbf{Dica:} uma vez criado o \texttt{Canvas}, posicione ele com o método \texttt{pack}, passando as opções \texttt{expand=\stmt{True}} e \texttt{fill=\str{both}} para que o \texttt{Cavas} ocupe toda a tela.
+		\item Crie um \texttt{Canvas}. \textbf{Dica:} uma vez criado o \texttt{Canvas}, posicione ele com o método \texttt{pack}, passando as opções \texttt{expand=\stmt{True}} e \texttt{fill=\str{both}} para que o \texttt{Canvas} ocupe toda a tela.
 		\item Faça primeiro o céu. Você pode criar um retângulo ou simplesmeste alterar a propriedade \texttt{bg} do \texttt{Canvas} (cor do \textit{background}).
+		
+		\item Em seguida, desenhe o Sol. O seu movimento aparente no horizonte é bem descrito por um seno (ou cosseno).
+		
+		\item Hora de fazer o horizonte. A linha fica bem no meio da tela, mas isso fica a seu critério. Um retângulo na parte inferior já é suficiente, mas você também pode compor diversos círculos ou triângulos para dar forma ao relevo, como em uma colagem.
+		
 	\end{enumerate}
 
 	\begin{lstlisting}
@@ -346,13 +351,14 @@ class Janela:
 		self.canvas = tk.Canvas(self.root)
 		self.canvas.pack(expand=True, fill="both")
 		
+		...
 		
 root = tk.Tk()
 self = Janela(root)
 root.mainloop()
 	\end{lstlisting}
 
-	\problem[3]{O Método de Monte Carlo}
+	\problem[2]{O Método de Monte Carlo}
 	
 	O Método de \emph{Monte Carlo} funciona da seguinte forma: Se temos uma determinada região e queremos calcular sua área, basta fazer com que ela esteja contida em uma outra região cuja área é conhecida. Em seguida, sorteamos pontos aleatórios $P_{i} = (x_{i}, y_{i})$ e contamos quantos pontos caem dentro da região que estamos avaliando. Assim:
 	
@@ -383,7 +389,7 @@ root.mainloop()
 	
 	\problem[3]{Música IV - O Piano}
 	
-	\textbf{Desafio:} Use os resultados das etapas enteriores( \textbf{Musical} e construa um Piano Virtual com o \texttt{tkinter}. Desenhe as teclas em um \texttt{Canvas} e use o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo.
+	\textbf{Desafio:} Use os resultados das etapas enteriores (\textbf{Musica I, II e III}) e construa um Piano Virtual com o \texttt{tkinter}. Você pode desenhar as teclas em um \texttt{Canvas} e usar o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo. Outra forma de fazer é usar o \textit{widget} \texttt{Button} para fazer cada tecla.
 
 	\chap{Métodos numéricos (\texttt{numpy})}
 
@@ -404,7 +410,7 @@ root.mainloop()
 	
 	É possível fazer uma analogia com a notação científica. Vamos observar o número de moléculas em um mol de uma substância qualquer:
 	
-		$$6.02 \times 10^{23}$$
+		$$1 \text{mol} = 6.02 \times 10^{23}$$
 
 	De maneira imediata, podemos separar esse número em três partes também: o sinal ($+$), o expoente (23), e a mantissa (6.02).\\
 	

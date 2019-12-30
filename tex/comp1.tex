@@ -80,17 +80,17 @@ def f(n):
 	
 	\begin{interlude}{Decoradores}
 	
-	Decoradores ...
+	Decoradores são funções que proporcionam uma maneira simples de alterar o funcionamento de uma função no momento da sua definição. Um decorador recebe uma função como parâmetro e dever retornar também uma função.
 	
 	\begin{lstlisting}
-def dec(f):
+def mod3(f):
 	def g(x):
-		return -f(x)
+		return f(x) % 3
 	return g
 	
-@dec
+@mod3
 def f(x):
-	return x
+	return x ** 2 + 1
 	\end{lstlisting}	
 	
 	\end{interlude}
@@ -99,6 +99,25 @@ def f(x):
 	
 	Agora que já sabemos como construir uma função e decorá-la, podemos fazer um decorador que nos ajude a medir o tempo que uma função leva pra rodar.
 	
+	\problem[1]{Diferencial I}
+	
+	Aprendemos em Cálculo I que a derivada de uma função $f(x)$ pode ser calculada como:
+	
+		$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$
+	
+	Se escolhemos um $h$ pequeno, algo como $0.001$, podemos deixar a ideia de limite de lado e partir para uma aproximação
+	
+		$$f'(x) \approx \frac{f(x + h) - f(x)}{h} \text{ para } h \ll 1$$
+
+	Outras aproximações razoáveis são	
+		\begin{align*}
+		f'(x) &\approx \frac{f(x + h) - f(x - h)}{2h}\\
+		\\		
+		f'(x) &\approx \frac{\im{f(x + \mb{i}h)}}{h} 
+		\end{align*}	
+	sendo essa última um pouco mais holística.\\
+	
+	\textbf{Desafio:} Faça uma função \texttt{d(f, h)} que receba uma função \texttt{f} e um número bem pequeno \texttt{h} e retorne uma outra função, que aproxime a derivada de \texttt{f}.
 	
 	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
 	
@@ -147,6 +166,38 @@ def f(x):
 
 	\quest Utilize condicionais para criar funções definidas por partes, como as dos exemplos.
 	
+	\chap{Laços (\stmt{for}, \stmt{while})}
+	
+	\problem[2]{Sequência de Collatz}
+	
+	A sequência de Collatz é descrita recursivamente por:
+	{\large
+	\begin{align*}
+		f(n) \triangleq \begin{cases}
+		3n + 1, &\text{ se } n \text{ for ímpar}\\
+		n \div 2, &\text{ se } n \text{ for par}
+		\end{cases}
+	\end{align*}
+	}
+	Por exemplo, começamos com $n = 26$. Após sucessivas aplicações temos:
+		$$26 \to 13 \to 40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$$
+	Isso nos dá uma sequência com $11$ números. $40$ é maior que $26$, mas sua sequência só teria $9$ números.\\
+	\\
+	Ainda não se sabe se todos os números induzem uma sequência que termina em $1$. No entanto, até agora não foi encontrado um número sequer em que isso não tenha acontecido!\\
+	\\
+	\textbf{Deasfio: } Faça uma função que calcule o comprimento da sequência gerada a partir de um número natural $n$ qualquer.
+	
+	\problem[3]{Integral I}
+	
+	A \textbf{Integral de Riemann} é dada por:
+	
+		$$\int_{a}^{b} f(x)\ dx = \lim_{N \to \infty} \sum_{k = 0}^{N} f(x_k) \cdot \delta x \text{ onde } \delta x = \frac{(b - a)}{N} \text{ e } x_k = a + k \cdot \delta x$$
+	
+	No entanto, vamos nos ater somente a um $N$ suficientemente grande e deixar o limite para lá.\\
+	
+	\quest Faça uma função que calcule o valor da integral definida de uma função \texttt{f}, dados os limites \texttt{a} e \texttt{b}, assim como o valor de \texttt{N}.
+	
+	
 	\chap{Números (\type{int}, \type{float}, \type{complex})}
 
 	\problem[2]{Números Primos}
@@ -184,29 +235,13 @@ def f(x):
 	
 	\textbf{Desafio:} Faça uma função que calcule a frequência $\mathbf{f}$ de cada nota, a partir do seu número, supondo que $\mathbf{f}(0) = 440\text{Hz}$.
 	
-	\problem[1]{Diferencial I}
 	
-	Aprendemos em Cálculo I que a derivada de uma função $f(x)$ pode ser calculada como:
 	
-		$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$
 	
-	Se escolhemos um $h$ pequeno, algo como $0.001$, podemos deixar a ideia de limite de lado e partir para uma aproximação
-	
-		$$f'(x) \approx \frac{f(x + h) - f(x)}{h} \text{ para } h \ll 1$$
-
-	Outras aproximações razoáveis são	
-		\begin{align*}
-		f'(x) &\approx \frac{f(x + h) - f(x - h)}{2h}\\
-		\\		
-		f'(x) &\approx \frac{\im{f(x + \mb{i}h)}}{h} 
-		\end{align*}	
-	sendo essa última um pouco mais holística.\\
-	
-	\textbf{Desafio:} Faça uma função \texttt{d(f, h)} que receba uma função \texttt{f} e um número bem pequeno \texttt{h} e retorne uma outra função, que aproxime a derivada de \texttt{f}.
 	
 	\chap{\textit{Strings} e Texto (\type{str})}
 
-	\problem[1]{DNA}
+	\problem[2]{DNA I}
 	
 	Uma sequência de DNA (\emph{ácido desoxirribonucleico}) é composta por 4 nucleotídeos: \textbf{A}denina, \textbf{C}itosina, \textbf{G}uanina \textbf{T}imina. Já no RNA mensageiro (mRNA), a \textbf{T}imina está ausente, e dá lugar para a \textbf{U}racila. Quando um ribossomo realiza a transcrição de DNA em mRNA ele segue uma regra muito simples:
 		
@@ -219,11 +254,17 @@ def f(x):
 			\end{tabular}
 	\end{center}
 	
+	Além disso, o DNA possui alguns códons (sequências de 3 nucleotídeos) que indicam o início e fim de uma transcrição. ATG marca o início, enquanto TAG, TAA, e TGA indicam o final.\\
+	
 	Podemos representar uma fita de DNA usando uma \emph{string} (\type{str}), como por exemplo:
 	\begin{center}
-		\str{ATCGTACGACTATACTACGTAGCTAAACGCATACGATCGACAAAGC}	
+	\str{ACAATGTGTACGACTATACTACGTGCCTATTCGCATACGATCGATGACTAG}	
 	\end{center}
-	\textbf{Desafio:} Faça uma função que traduza uma fita de DNA como faria um ribossomo.
+	
+	\textbf{Desafio:} Faça uma função que traduza uma fita de DNA como faria um ribossomo. Ela deve receber uma \textit{string} de DNA e retornar uma \textit{string} de mRNA. Por exemplo, a fita de DNA acima seria transcrita em
+	\begin{center}
+	\str{ACAUGCUGAUAUGAUGCACGGAUAAGCGUAUGCUAGCUACUG}	
+	\end{center}
 	
 	
 	\problem[4]{Separando sílabas}
@@ -252,9 +293,36 @@ def f(x):
 ['pás', 'sa', 'ro']
 >>> f('carrossel')
 ['car', 'ros', 'sel']
+>>> f('paralelepípedo')
+['pa', 'ra', 'le', 'le', 'pí', 'pe', 'do']
 	\end{lstlisting}
 	
 	\problem[3]{Bases numéricas alternativas}
+	
+	\subsubsection*{Binária}
+	
+	\subsubsection*{Hexadecimal}
+	
+	\begin{tabular}{rrrrrrrrrrrrrrrr}
+0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & A & B & C & D & E & F\\
+10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 1A & 1B & 1C & 1D & 1E & 1F\\
+20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 2A & 2B & 2C & 2D & 2E & 2F\\
+30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 & 3A & 3B & 3C & 3D & 3E & 3F\\
+40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 4A & 4B & 4C & 4D & 4E & 4F\\
+50 & 51 & 52 & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 5A & 5B & 5C & 5D & 5E & 5F\\
+60 & 61 & 62 & 63 & 64 & 65 & 66 & 67 & 68 & 69 & 6A & 6B & 6C & 6D & 6E & 6F\\
+70 & 71 & 72 & 73 & 74 & 75 & 76 & 77 & 78 & 79 & 7A & 7B & 7C & 7D & 7E & 7F\\
+80 & 81 & 82 & 83 & 84 & 85 & 86 & 87 & 88 & 89 & 8A & 8B & 8C & 8D & 8E & 8F\\
+90 & 91 & 92 & 93 & 94 & 95 & 96 & 97 & 98 & 99 & 9A & 9B & 9C & 9D & 9E & 9F\\
+A0 & A1 & A2 & A3 & A4 & A5 & A6 & A7 & A8 & A9 & AA & AB & AC & AD & AE & AF\\
+B0 & B1 & B2 & B3 & B4 & B5 & B6 & B7 & B8 & B9 & BA & BB & BC & BD & BE & BF\\
+C0 & C1 & C2 & C3 & C4 & C5 & C6 & C7 & C8 & C9 & CA & CB & CC & CD & CE & CF\\
+D0 & D1 & D2 & D3 & D4 & D5 & D6 & D7 & D8 & D9 & DA & DB & DC & DD & DE & DF\\
+E0 & E1 & E2 & E3 & E4 & E5 & E6 & E7 & E8 & E9 & EA & EB & EC & ED & EE & EF\\
+F0 & F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & FA & FB & FC & FD & FE & FF
+	\end{tabular}		
+	
+	\subsubsection*{Babilônia}
 	
 	Estamos habituados com a base decimal, muito provavelmente porquê temos 10 dedos. O pessoal da antiga Babilônia tinha um sistema sexagesiaml: Isso mesmo, eram 60 dígitos diferentes!
 	
@@ -286,26 +354,7 @@ def f(x):
 	
 	Uma maneira interessante de fazer isso é criando uma lista de tamanho $\mb{N} + 1$, ou seja, cujos índices vão de 0 até $\mb{N}$.
 	
-	\chap{Laços (\stmt{for}, \stmt{while})}
 	
-	\problem[2]{Sequência de Collatz}
-	
-	A sequência de Collatz é descrita recursivamente por:
-	{\large
-	\begin{align*}
-		f(n) \triangleq \begin{cases}
-		3n + 1, &\text{ se } n \text{ for ímpar}\\
-		n \div 2, &\text{ se } n \text{ for par}
-		\end{cases}
-	\end{align*}
-	}
-	Por exemplo, começamos com $n = 26$. Após sucessivas aplicações temos:
-		$$26 \to 13 \to 40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$$
-	Isso nos dá uma sequência com $11$ números. $40$ é maior que $26$, mas sua sequência só teria $9$ números.\\
-	\\
-	Ainda não se sabe se todos os números induzem uma sequência que termina em $1$. No entanto, até agora não foi encontrado um número sequer em que isso não tenha acontecido!\\
-	\\
-	\textbf{Deasfio: } Faça uma função que calcule o comprimento da sequência gerada a partir de um número natural $n$ qualquer.
 	\chap{Conjuntos e Dicionários (\type{set}, \type{dict})}
 	
 	\problem[2]{Música II}\label{p:musica2}

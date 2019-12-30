@@ -131,6 +131,27 @@
 }% 
 {\inter}% end code
 
+\newcommand{\cc}{%%
+	\thispagestyle{empty}
+	\vfill
+	\begin{figure}[hb!]
+	\centering
+	\includegraphics{cc.png}
+	\end{figure}
+	\pagebreak
+}
+
+\def\gobblechar{\let\xchar= }
+\def\assignthencheck{\afterassignment\xloop\gobblechar}
+\def\xloop{%
+  \ifx\relax\xchar
+      \let\next=\relax
+    \else
+      \fbox{\xchar}\let\next=\assignthencheck
+  \fi
+  \next}
+\def\makelist#1{\assignthencheck#1\relax}
+
 \endinput
 
 %%

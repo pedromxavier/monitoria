@@ -10,16 +10,40 @@
 	%--- ''Fala galerinha do YouTube!'' --- EXTREME, Venom.
 	%~\\
 	%~\\
-	Essa lista de exercícios ainda se encontra em desenvolvimento. A intenção é que ela tenha um gabarito bem aberto, deixando muito das respostas para a criatividade do aluno. As questões são, em geral, grandes para se resolver e podem necessitar de alguma pesquisa adicional. Elas tem estrelinhas $\star$ indicando a dificuldade estimada. Alguns exercícios foram inspirados em outros propostos em materiais cujas fontes estão devidamente referenciadas no final. É importante você tire suas dúvidas e dê um retorno do que achou dos exercícios através do \texttt{e-mail} no cabeçalho.
+	Essa lista de exercícios ainda se encontra em desenvolvimento. A intenção é que ela tenha um gabarito bem aberto, deixando muito das respostas para a criatividade do aluno. As questões estão organizadas em relação aos assuntos. Mesmo assim cada exercício demanda conhecimentos da disciplina como um todo. Elas tem estrelinhas $\star$ indicando a dificuldade estimada. É importante você tire suas dúvidas e dê um retorno do que achou dos exercícios através do \texttt{e-mail} no cabeçalho.
 	~\\
 	~\\
 	Boa diversão! \par
-	\pagebreak
 	
+	\cc
 	
 	\tableofcontents
 	
+	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}
+	
+	\begin{interlude}{Decoradores}
+	
+	Decoradores ...
+	
+	\begin{lstlisting}
+def dec(f):
+	def g(x):
+		return -f(x)
+	return g
+	
+@dec
+def f(x):
+	return x
+	\end{lstlisting}	
+	
+	\end{interlude}
+	
+	
 	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
+	
+	\problem[1]{}
+	
+	
 	
 	\chap{Números (\type{int}, \type{float}, \type{complex})}
 
@@ -42,6 +66,10 @@
 	\textbf{Desafio:} Faça o seu próprio gerador de números aleatórios!
 		
 	\problem[1]{Música I}\label{p:musica1}
+	
+	Uma \textbf{nota musical} é o nome que se dá ao som relativo a uma frequência específica. Uma \textbf{oitava} é o intervalo entre uma nota musical e aquela que possui o dobro da sua frequência. Na música ocidental, uma \textbf{oitava} é dividida em 12 tons.
+	
+	
 	\begin{center}
 	\scriptsize
 	\begin{TAB}(c,1cm,1cm)[5pt]{|c|c|c|c|c|c|c|c|c|c|c|c|}{|c|c|}
@@ -122,6 +150,16 @@
 ['car', 'ros', 'sel']
 	\end{lstlisting}
 	
+	\problem[3]{Bases numéricas alternativas}
+	
+	Estamos habituados com a base decimal, muito provavelmente porquê temos 10 dedos. O pessoal da antiga Babilônia tinha um sistema sexagesiaml: Isso mesmo, eram 60 dígitos diferentes!
+	
+	\figura[scale=1.0]{babylonian_numerals.png}{Dígitos Babilônicos 2000 a.C.}
+	
+	Na verdade, eram só 59 porquê eles ainda não tinham o zero e deixavam um espaço em branco no lugar dele o que na hora das contas devia ser uma Torre de Babel! Dá pra perceber que apesar disso, a composição dos símbolos ainda tem sua própria carga da notação decimal, mesclando-a com a base 6.\\
+	
+	\textbf{Desafio:} Crie uma função que transforme um número na base decimal em uma representação (\type{str}) na base babilônica, assim como uma outra que faça o caminho contrário.	
+		
 	
 	\chap{Listas e Tuplas (\type{list}, \type{tuple})}
 	
@@ -143,25 +181,6 @@
 	\end{enumerate}
 	
 	Uma maneira interessante de fazer isso é criando uma lista de tamanho $\mb{N} + 1$, ou seja, cujos índices vão de 0 até $\mb{N}$.
-	
-	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}
-	
-	\begin{interlude}{Decoradores}
-	
-	Decoradores ...
-	
-	\begin{lstlisting}
-def dec(f):
-	def g(x):
-		return -f(x)
-	return g
-	
-@dec
-def f(x):
-	return x
-	\end{lstlisting}	
-	
-	\end{interlude}
 	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	

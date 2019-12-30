@@ -15,7 +15,8 @@
 	~\\
 	~\\
 	Boa diversão! \par
-	\pagebreak
+	
+	\cc
 	
 	
 	\tableofcontents
@@ -384,9 +385,20 @@ root.mainloop()
 	
 	\textbf{Desafio:} Use os resultados das etapas enteriores( \textbf{Musical} e construa um Piano Virtual com o \texttt{tkinter}. Desenhe as teclas em um \texttt{Canvas} e use o método \texttt{Canvas.bind} para associar letras como \texttt{a,s,d,f,g,h,j} e \texttt{k} às teclas brancas e \texttt{w,e,t,y} e \texttt{u} às pretas, por exemplo.
 
-	\chap{Métodos numéricos (\texttt{Numpy})}
+	\chap{Métodos numéricos (\texttt{numpy})}
 
 	\begin{interlude}{Aritmética de ponto-flutuante (\type{float})}
+	
+	Agora que vamos utilizar o \texttt{numpy} é importante falar um pouco mais sobre o nosso antigo conhecido, o \type{float}. Existe um padrão industrial, o \textbf{IEE 754}, que especifica a representação numérica em ponto-flutuante.\\
+	
+	Um \type{float} possui três partes:	o \textit{bit} do sinal, o expoente, e a mantissa (ou fração). O número é positivo quando o primeiro \textit{bit} é 0, e negativo quando é 1. O tamanho do expoente e da mantissa depende de diversos fatores, desde o projeto do processador e da linguagem de programação até da escolha do programador.
+	
+	\begin{figure}[H]
+	\centering
+	\small
+	\makelist{0} \makelist{01111000} \makelist{0100000000000000000000}
+	\caption{O número 0.15625 no padrão IEE 754, precisão simples}
+	\end{figure}
 	
 	\end{interlude}
 	
@@ -395,7 +407,24 @@ root.mainloop()
 	
 	\chap{Plotagem de Gráficos (\texttt{Matplotlib})}
 	
-	\begin{interlude}{\texttt{nan}}
+	\begin{interlude}{\texttt{nan} e \texttt{inf}}
+	
+	Um outro tópico interessante de se falar, ainda no escopo da \textbf{aritmética de ponto-flutuante} (\type{float}), é a presença de três números especiais no padrão \textbf{IEE 784}: \texttt{nan}, \texttt{inf} e \texttt{-inf}.\\
+	
+	Como o nome já indica, \texttt{inf} e \texttt{-inf} são usados pra representar o infinito positivo $\infty$ e o negativo $-\infty$, respectivamente. É comum que surjam durante operações de divisão por zero, ou alguma outra operação que exceda a precisão do expoente.\\
+	
+	O \texttt{nan} (\textit{\textbf{n}ot \textbf{a} \textbf{n}umber}), por sua vez, é fruto de operações indeterminadas, como $\infty - \infty$ e $\frac{0}{0}$. É particularmente útil para representar valores ausentes. Quando presente em um \texttt{array} que será usado para plotar um gráfico, o \texttt{Matplotlib} simplesmente ignora as entradas, criando lacunas na curva desenhada.\\
+	
+	É possível obter esses números usando a função \type{float}, passando como parâmetro o nome do número desejado:
+	
+	\begin{lstlisting}[caption='\texttt{nan} e \texttt{inf}']
+>>> x = float("inf")
+>>> y = float("nan")
+>>> z = float("-inf")
+	\end{lstlisting}
+	
+	
+	
 	
 	\end{interlude}
 	

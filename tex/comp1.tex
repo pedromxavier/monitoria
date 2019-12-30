@@ -2,8 +2,16 @@
 
 \usepackage{comptype}
 
-\title{Lista de Computação I (Python) \\ {\normalsize DCC / UFRJ}}
-\author{Pedro Maciel Xavier (monitor)\\ \texttt{pedromxavier@poli.ufrj.br}}
+\title{%%
+Lista de Computação I (Python) \\
+{\normalsize DCC / UFRJ}
+}
+
+\author{%%
+Pedro Maciel Xavier (monitor)\\ 
+\texttt{pedromxavier@poli.ufrj.br}
+}
+
 \begin{document}
 	\maketitle
 	\section*{Introdução}
@@ -20,6 +28,55 @@
 	\tableofcontents
 	
 	\chap{Funções e Recursividade (\stmt{def}, \stmt{return})}
+	
+	\begin{interlude}{\texttt{*args} e \texttt{**kwargs}}
+	
+	Oberseve esta forma de definir uma função:
+	\begin{lstlisting}
+def f(x, *y, **z):
+	print(x)
+	print(y)
+	print(z)
+...
+>>> f(0, 1, 2, 3, penúltimo=4, último=5)
+0
+(1, 2, 3)
+{'penúltimo' : 4, 'último' : 5}
+	\end{lstlisting}
+	
+	Pode parecer um tanto confuso de início, mas o que estamos falando aqui é de parâmetros opcionais (\texttt{*args}) e de 
+	
+	\end{interlude}
+	
+	\begin{interlude}{Funções são objetos}
+	
+	No \texttt{Python} quase tudo é objeto. O conceito de objeto vai ficar mais claro no curso de \href{https://github.com/pedromxavier/monitoria/blob/master/tex/comp2.pdf}{Computação II}. O importante agora é saber que uma função não é tão diferente dos outros tipos, como os inteiros (\type{int}), listas (\type{list}) e strings (\type{str}). Isso tem uma implicação imediata: podemos passar funções como parâmetros pra outras funções. Isso pode ser muito útil, como veremos mais adiante, para calcular
+	
+	\end{interlude}	
+	
+	\problem[1]{Fibonacci \textit{X-treme}}
+	
+	A sequência de Fibonacci é definida por
+	\begin{align*}
+		\begin{cases}
+		F_{n} = F_{n-1} + F_{n-2}\\
+		F_{0} = 0 \text{ e } F_{1} = 1
+		\end{cases}
+	\end{align*}
+	
+	O $n$-ésimo termo pode ser obtido pela função
+
+	\begin{lstlisting}[caption="Fibonacci"]
+def f(n):
+	if n == 0:
+		return 0
+	elif n == 1:
+		return 1
+	else:
+		return f(n-1) + f(n-2)
+	\end{lstlisting}
+	
+	\quest Tente encontrar, usando a função acima, o número $F_{50}$.
 	
 	\begin{interlude}{Decoradores}
 	
@@ -38,12 +95,57 @@ def f(x):
 	
 	\end{interlude}
 	
+	\problem[3]{Tempo}
+	
+	Agora que já sabemos como construir uma função e decorá-la, podemos fazer um decorador que nos ajude a medir o tempo que uma função leva pra rodar.
+	
 	
 	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
 	
-	\problem[1]{}
+	\problem[1]{Funções por partes}
 	
+	Funções podem ser definidas por partes, isto é, utilizamos uma função para cada trecho do domínio. Dentre os exemplos mais conhecidos temos
+
+\begin{itemize}
+
+	\item[] A função de \textit{Heaviside}, ou função degrau:
+	\begin{align*}
+		u(t) \triangleq	\begin{cases}
+		1, \text{ se } t \geq 0\\
+		0, \text{ c.c.}
+		\end{cases}
+	\end{align*}
 	
+	\item[] A sua derivada, o delta de Dirac \footnote{Uma definição mais precisa supõe que $\displaystyle \int_{\mathbb{R}} \delta(t)\ dt = 1$}:
+	\begin{align*}
+		\delta(t) \triangleq	\begin{cases}
+		\infty, \text{ se } t = 0\\
+		\phantom{0}0, \text{ c.c.}
+		\end{cases}
+	\end{align*}
+	
+	\item[] O módulo de um número real:
+	\begin{align*}
+		|x| \triangleq	\begin{cases}
+		\phantom{-}x, \text{ se } x \geq 0\\
+		-x, \text{ c.c.}
+		\end{cases}
+	\end{align*}	
+\end{itemize}
+	
+	Mas podemos pensar muitos outros exemplos a tirar da cartola
+
+\begin{itemize}
+
+	\item[]	\begin{align*}
+		f(x) \triangleq	\begin{cases}
+		1, \text{ se } t \geq 0\\
+		0, \text{ c.c.}
+		\end{cases}
+	\end{align*}		
+\end{itemize}
+
+	\quest Utilize condicionais para criar funções definidas por partes, como as dos exemplos.
 	
 	\chap{Números (\type{int}, \type{float}, \type{complex})}
 
@@ -60,14 +162,16 @@ def f(x):
 			\mathbf{n}_j = \mathbf{p} \times \mathbf{n}_{j-1} + \mathbf{b} \mod \mathbf{N}
 		\end{align*}
 
-	Para obter um número "aleatório" distribuído de maneira uniforme no intervalo $[0, 1)$, basta calcular
+	Para obter um número "aleatório"~ distribuído de maneira uniforme no intervalo $[0, 1)$, basta calcular
 		$$\mathbf{x}_j = \frac{\mathbf{n}_j}{\mathbf{N}}$$
 		
 	\textbf{Desafio:} Faça o seu próprio gerador de números aleatórios!
 		
 	\problem[1]{Música I}\label{p:musica1}
 	
-	Uma \textbf{nota musical} é o nome que se dá ao som relativo a uma frequência específica. Uma \textbf{oitava} é o intervalo entre uma nota musical e aquela que possui o dobro da sua frequência. Na música ocidental, uma \textbf{oitava} é dividida em 12 tons.
+	Uma \textbf{nota musical} é o nome que se dá ao som relativo a uma frequência específica. Uma \textbf{oitava} é o intervalo entre uma nota musical e aquela que possui o dobro da sua frequência. Na música ocidental, uma \textbf{oitava} é dividida em 12 tons.\\
+	
+	A nota \textit{lá}, cujo símbolo é A, é normalmente dada pela frequência de 440Hz. Isso significa que também chamaremos de \textit{lá} os sons de 220Hz, 880Hz e assim por diante.\\
 	
 	
 	\begin{center}
@@ -83,8 +187,8 @@ def f(x):
 	\problem[1]{Diferencial I}
 	
 	Aprendemos em Cálculo I que a derivada de uma função $f(x)$ pode ser calculada como:
-
-		$$f'(x) = \lim_{h \to 0} $$
+	
+		$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$
 	
 	Se escolhemos um $h$ pequeno, algo como $0.001$, podemos deixar a ideia de limite de lado e partir para uma aproximação
 	
@@ -154,7 +258,7 @@ def f(x):
 	
 	Estamos habituados com a base decimal, muito provavelmente porquê temos 10 dedos. O pessoal da antiga Babilônia tinha um sistema sexagesiaml: Isso mesmo, eram 60 dígitos diferentes!
 	
-	\figura[scale=1.0]{babylonian_numerals.png}{Dígitos Babilônicos 2000 a.C.}
+	\figura[width=\textwidth]{babylonian_numerals.png}{Dígitos Babilônicos 2000 a.C.}
 	
 	Na verdade, eram só 59 porquê eles ainda não tinham o zero e deixavam um espaço em branco no lugar dele o que na hora das contas devia ser uma Torre de Babel! Dá pra perceber que apesar disso, a composição dos símbolos ainda tem sua própria carga da notação decimal, mesclando-a com a base 6.\\
 	

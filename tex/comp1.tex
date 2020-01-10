@@ -175,11 +175,17 @@ def d(f, h=1e-6):
 	...
 	\end{lstlisting}
 	
-	\problem[2]{Diferencial II}
+	\problem[2]{Diferencial \ROMAN{2}}
 	
 	Se calculamos a derivada da derivada de uma função $f(x)$, obtemos a sua segunda derivada, $f''(x)$. E se calcularmos a derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada?\\
 	
 	\quest Faça uma função \texttt{D(f, n, h)} que calcule a $n$-ésima derivada da função \texttt{f}, de maneira recursiva.
+	
+	\problem[3]{Diferencial \ROMAN{3} - Parcial}\label{p:diferencial3}
+	
+	Em uma função com mais de uma variável, a noção de derivada é entendida através das derivadas parciais.\\
+	
+	\quest Implemente uma função \texttt{D(f, i, h)} que calcule a derivada parcial com respeito a $i$-ésima variável $x_i$. A função deve retornar uma outra função, supondo que \texttt{f} depende somente de \texttt{x}, um vetor.
 	
 	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
 	
@@ -251,8 +257,12 @@ def d(f, h=1e-6):
 	\end{TAB}
 	\end{center}	
 	
-	
 	\quest Usando condicionais, construa uma função que consiga classificar os dados da tabela, tentando usar o mínimo possível de etapas.
+	
+	\problem[2]{Robô}
+	
+		
+	
 	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	
@@ -411,8 +421,41 @@ def d(f, h=1e-6):
 ['pa', 'ra', 'le', 'le', 'pí', 'pe', 'do']
 	\end{lstlisting}
 	
-	\problem[3]{Bases numéricas alternativas \incomplete}
+	\problem[3]{Formas numéricas alternativas \ROMAN{1} - Roma \incomplete}
 	
+	blablabla sobre números romanos\\
+	
+	\begin{figure}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline		
+		& & & & & &\\
+		\hline
+		& & & & & &\\
+		\hline
+		\end{tabular}
+	\end{figure}
+	
+	\quest Crie uma função que transforme um número natural em uma \textit{string} com a sua representação romana.
+	
+	\begin{lstlisting}
+>>> romano(12)
+'XII'
+>>> romano(44)
+'XLIV'
+	\end{lstlisting}
+
+	\textbf{Outro desafio:} Faça uma outra função para calcular o caminho contrário: dada um número romano (\type{str}), retornar um inteiro (\type{int}).
+
+	\begin{lstlisting}
+>>> anti_romano('XII')
+12
+>>> anti_romano('XLIV')
+44
+	\end{lstlisting}
+	
+	\problem[3]{Formas numéricas alternativas \ROMAN{2} - Babilônia \incomplete}
+
 	\subsubsection*{Binária}
 	
 	\begin{figure}[H]
@@ -469,7 +512,9 @@ def d(f, h=1e-6):
 	
 	Uma maneira interessante de fazer isso é criando uma lista de tamanho $\mb{N} + 1$, ou seja, cujos índices vão de 0 até $\mb{N}$.\\
 
-	\quest Implemente o crivo de Eratóstenes e, em seguida, elabore versões melhoradas do algoritmo, até onde conseguir.	
+	\quest Implemente o crivo de Eratóstenes e, em seguida, elabore versões melhoradas do algoritmo, até onde conseguir.
+	
+	
 	
 	\chap{Conjuntos e Dicionários (\type{set}, \type{dict})}
 	

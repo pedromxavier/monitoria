@@ -217,18 +217,6 @@ Exception: Isso não é grupo!
 	
 	\pagebreak
 	
-	\problem[4]{Música III - Partituras	}
-	A nota \emph{lá} (A$4$) na musica ocidental corresponde a frequência de $440\text{Hz}$. A partir desta nota podemos conhecer todas as outras frequências usando a simples fórmula:
-	\[f(n) = 440 \times \sqrt[12]{2^{n}}\]
-	A escala musical \emph{cromática} é dividida em $12$ semitons, cada um correspondente a uma nota:\\
-	\\
-	\texttt{..., fá\#[-3], sol[-2], sol\#[-1], lá[0], lá\#[1], si[2],}\\ \texttt{dó[3], dó\#[4], ré[5], ré\#[6], mi[7], fá[8], fá\#[9]...}\\
-	\\
-	Essa sequência se repete nos dois sentidos e símbolo \# lê-se \emph{sustenido}. Assim, se queremos a frequência de um \emph{dó} logo após o \emph{lá} central (A$4$), basta calcular $f(3) \approx 523.25\text{Hz}$.\\
-	Note que se temos alguma nota cuja frequência é $f(\bar{n})$, ao avançarmos $12$ semitons na escala cromática voltamos para a mesma nota, mas com frequência $f(\bar{n} + 12)$. Ao tirar a razão entre as duas frequências:
-	\[\frac{f(\bar{n} + 12)}{f(\bar{n})} = \frac{440 \times \sqrt[12]{2^{\bar{n} + 12}}}{440 \times \sqrt[12]{2^{\bar{n}}}} = 2\]
-	Isso nos diz que cada vez que avançamos até a próxima repetição de uma nota, dobramos a frequência! Na escala de \emph{dó maior}, que todos sabemos de cor, isso equivale a avançar uma \emph{oitava acima}.
-	
 	\begin{interlude}{\texttt{Beep}}
 	
 	Um jeito fácil de fazer barulho no computador é usando a função \texttt{Beep}. Se você usa o \texttt{Python} no \texttt{Windows} boas notícias: você só vai precisar importar a função \texttt{Beep} do módulo \texttt{winsound}.\\
@@ -248,40 +236,6 @@ def Beep(f, ms):
 	\end{lstlisting}
 	
 	\end{interlude}
-	
-	Vamos construir agora um sensacional tocador de músicas! Você deve fazer duas classes: \texttt{Som} e \texttt{Musica} conforme os protótipos a seguir:
-	
-	\begin{lstlisting}
-class Som(object):
-
-    def __init__(self, nota, duracao):
-        ...
-        
-class Musica(list):
-
-    def __init__(self, partitura, tempo):
-        ...
-        
-    def play(self):
-        """ Toca a musica.
-        """
-        ...
-	\end{lstlisting}
-	Um \texttt{Som} deve ter:
-	\begin{enumerate}
-		\item O número da nota (\emph{lá}=0, \emph{si}=2, ...), que será usado para calcular a frequência dela.
-		\item A duração da nota, que deve ser uma fração da \emph{batida} que seja potência de $\frac{1}{2}$. Você pode até informar somente o expoente $m$ de $(\frac{1}{2})^{m}$, onde $m \in [-2, 6]$.
-	\end{enumerate}
-	A duração absoluta da nota dependerá da música em que o \texttt{Som} será tocado.
-	\\ \\
-	Já uma instância de \texttt{Musica} deve receber na construção:
-	\begin{enumerate}
-		\item A \texttt{partitura}, que é uma lista de objetos do tipo \texttt{Som}.
-		\item O \texttt{tempo}, dado em \emph{batidas por minuto} (bpm).
-	\end{enumerate}
-	\texttt{Musica} herda as propriedades de lista, e assim pode ser percorrida com um \texttt{for}, tocando nota por nota.
-	\\ \\
-	Tendo essa parafernália toda em mãos, construiremos esses objetos de forma que a música seja tocada através da função \texttt{Beep(f, ms)}, que recebe a frequência \texttt{f} da nota e a sua duração \texttt{ms} em \emph{milissegundos}.
 
 	\problem[3]{Quaterniões!}
 	
@@ -295,26 +249,33 @@ class Musica(list):
 	\mb{i} \times \mb{j} \times \mb{k} &= -1	
 	\end{align*}
 	
-	Com regras de soma convencionais, similares aos números reais e complexos, mas com uma multiplicação que mais parece o produto externo entre vetores, implemente uma classe \texttt{Quaternion}, que é criada a partir dos seus $4$ coeficientes reais e implementa:
+	\quest Com regras de soma convencionais, similares aos números reais e complexos, mas com uma multiplicação que mais parece o produto externo entre vetores, implemente uma classe \texttt{Quaternion}, que é criada a partir dos seus $4$ coeficientes reais e implementa:
 	\begin{enumerate}
 		\item O operador de soma \texttt{+} (\spm{add})
 		\item A subtração \texttt{-} (\spm{sub})
 		\item A multiplicação \texttt{*} (\spm{mul})
-		\item O método \spm{repr} que imprima na tela, pra $q = 3 + 4\mb{j} - 2\mb{k}$ a \type{string} \texttt{(3.00) + (0.00)i + (4.00)j + (-2.00)k}
+		\item O método \spm{repr} que imprima na tela, para $q = 3 + 4\mb{j} - 2\mb{k}$, a \textit{string} \texttt{(3.00) + (0.00)i + (4.00)j + (-2.00)k}
 	\end{enumerate}
 	
-	Extra:
+	\textbf{Bônus:}
 	\begin{enumerate}
-		\item O módulo do quaternião, através da função \type{abs}(q), implementada pelo método especial \spm{abs}
+		\item O módulo do quaternião, através da função \texttt{\type{abs}(q)}, implementada pelo método especial \spm{abs}
 		\item A divisão \texttt{\slash} (\spm{truediv})
 	\end{enumerate}
 
-	Dica:
-	Implemente os métodos \spm{invert} e \spm{neg} para auxiliar na definição de \spm{truediv} e \spm{sub}, respectivamente.
+	\textbf{Dica:} Implemente os métodos \spm{invert} e \spm{neg} para auxiliar na definição de \spm{truediv} e \spm{sub}, respectivamente.
 	
 	\chap{Interface Gráfica (\texttt{tkinter})}
 	
+	\problem[4]{Preenchendo o espaço.}\label{p:hilbert}
+	
+	Curvas de Hilbert	
+	
 	\problem[4]{Números Primos II}
+	
+	Muitas figuras interessantes se formam a partir dos números primos.
+	
+	\quest Vamos usar o mesmo programa da questão anterior [\ref{p:hilbert}], mas com uma singela modificação: Definimos um contador e, a cada passo, a pintura só ocorre se o número for primo. Em seguida, incrementamos o contador e seguimos adiante!
 	
 	
 	
@@ -397,7 +358,7 @@ root.mainloop()
 
 	\chap{Métodos numéricos (\texttt{numpy})}
 
-	\problem[1]{}
+	\problem[3]{Redes Neurais}
 
 	\begin{interlude}{Aritmética de ponto-flutuante (\type{float})}
 	

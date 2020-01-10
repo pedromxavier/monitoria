@@ -63,6 +63,15 @@ def f(x, *y, **z):
 [0, 1, 2, 3, 4]
 	\end{lstlisting}
 	
+	E o mesmo vale pra dicionários:
+	
+	\begin{lstlisting}
+>>> x = {1: 'b', 2: 'c', 3: 'd'}
+>>> y = {0: 'a', **x, 4: 'e'}
+>>> print(y)
+{0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e'}
+	\end{lstlisting}
+	
 	Mas também existem outros usos, como separar o primeiro e o último elemento do restante de uma lista (\type{list}):
 	
 	\begin{lstlisting}
@@ -78,9 +87,13 @@ def f(x, *y, **z):
 	
 	\end{interlude}
 	
+	\problem[1]{?}
+	
+	\problem[1]{?}
+	
 	\begin{interlude}{Funções são objetos}
 	
-	No \texttt{Python} quase tudo é objeto. O conceito de objeto vai ficar mais claro no curso de \href{https://github.com/pedromxavier/monitoria/blob/master/tex/comp2.pdf}{Computação II}. O importante agora é saber que uma função não é tão diferente dos outros tipos, como os inteiros (\type{int}), listas (\type{list}) e strings (\type{str}). Isso tem uma implicação imediata: podemos passar funções como parâmetros pra outras funções. Isso pode ser muito útil, como veremos mais adiante, para definir funções a partir de outras. Exemplos comuns são: derivadas, integrais, campos vetoriais, etc.
+	No \texttt{Python} quase tudo é objeto. O conceito de objeto vai ficar mais claro no curso de \href{https://github.com/pedromxavier/monitoria/blob/master/tex/comp2.pdf}{Computação II}. O importante agora é saber que uma função não é tão diferente dos outros tipos, como os inteiros (\type{int}), listas (\type{list}) e strings (\type{str}). Isso tem uma implicação imediata: podemos passar funções como parâmetros pra outras funções. Isso pode ser muito útil, como veremos mais adiante, para definir funções a partir de outras, como no caso das derivadas, integrais e dos campos vetoriais, por exemplo.
 	
 	\end{interlude}	
 	
@@ -133,7 +146,7 @@ def f(x):
 from time import perf_counter as clock
 	\end{lstlisting}
 	
-	\quest O seu decorador deve alterar a função para que ela retorne uma tupla contendo o resultado e o tempo de execução da função em segundos.
+	\quest O seu decorador deve alterar a função para que ela retorne uma tupla contendo o resultado e o tempo de execução em segundos.
 	
 	\problem[1]{Diferencial I}
 	
@@ -155,6 +168,12 @@ from time import perf_counter as clock
 	
 	\quest Faça uma função \texttt{d(f, h)} que receba uma função \texttt{f} e um número bem pequeno \texttt{h} e retorne uma outra função, que aproxime a derivada de \texttt{f}.
 	
+	\problem[2]{Diferencial II}
+	
+	Se calculamos a derivada da derivada de uma função $f(x)$, obtemos a sua segunda derivada, $f''(x)$. E se calcularmos a derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada?
+	
+	\quest Faça uma função
+	
 	\chap{Condições (\stmt{if}, \stmt{elif}, \stmt{else})}
 	
 	\problem[1]{Funções por partes}
@@ -171,7 +190,7 @@ from time import perf_counter as clock
 		\end{cases}
 	\end{align*}
 	
-	\item[] A sua derivada, o delta de Dirac \footnote{Uma definição mais precisa supõe que $\displaystyle \int_{\mathbb{R}} \delta(t)\ dt = 1$}\footnote{O infinito ($\infty$) no \texttt{Python} é dado por \texttt{\type{float}(\str{inf})}.}:
+	\item[] A sua derivada, o delta de Dirac \footnote{Uma definição mais precisa supõe que $\displaystyle \int_{-\infty}^{\infty} \delta(t)\ dt = 1$}\footnote{O infinito ($\infty$) no \texttt{Python} é dado por \texttt{\type{float}(\str{inf})}.}:
 	\begin{align*}
 		\delta(t) \triangleq	\begin{cases}
 		\infty, \text{ se } t = 0\\
@@ -188,19 +207,45 @@ from time import perf_counter as clock
 	\end{align*}	
 \end{itemize}
 	
-	Mas podemos pensar muitos outros exemplos a tirar da cartola
-
-\begin{itemize}
-
-	\item[]	\begin{align*}
+	Mas podemos pensar muitos outros exemplos
+	\begin{align*}
 		f(x) \triangleq	\begin{cases}
-		1, \text{ se } t \geq 0\\
-		0, \text{ c.c.}
+		\hfill -2x,& \text{ se } 1 \leq x < 2\\ 
+		\hfill x,& \text{ se } 3 \leq x < 5\\
+		\hfill x^2,& \text{ c.c.}
 		\end{cases}
-	\end{align*}		
-\end{itemize}
+	\end{align*}
+	\begin{align*}
+		g(x, y) \triangleq	\begin{cases}
+		\hfill x^2 + y^2,& \text{ se } x^2 + y^2 \leq 1\\
+		\hfill x^2 + xy + y^2,& \text{ se } 1 < x^2 + y^2 \leq 4\\
+		\hfill 0,& \text{ c.c.}\\
+		\end{cases}
+	\end{align*}
 
 	\quest Utilize condicionais para criar funções definidas por partes, como as dos exemplos.
+	
+	\problem[3]{Árvores de Decisão}
+	
+	Uma técnica muito comum em aprendizado de máquina atualmente, uma \textbf{Árvore de Decisão} é uma estrutura de condicionais que se ramifica a cada etapa.
+
+	\begin{center}
+	\ttfamily\small
+	\begin{TAB}(c,1cm,1cm)[5pt]{|c|c|c|c|c|}{|c|c|c|c|c|c|c|c|c|}
+		Idade & Altura (m) &  & & \\
+		12 & 1.33 & & & \\
+		65 & 1.70 & & & \\
+		15 & 1.63 & & & \\
+		59 & 1.65 & & & \\
+		34 & 1.68 & & & \\
+		42 & 1.72 & & & \\
+\phantom{0}9 & 1.10 & & & \\
+		22 & 1.80 & & & \\
+	\end{TAB}
+	\end{center}	
+	
+	
+	\quest Usando condicionais, construa uma função que consiga classificar os dados da tabela.
 	
 	\chap{Laços (\stmt{for}, \stmt{while})}
 	
@@ -358,15 +403,23 @@ from time import perf_counter as clock
 	
 	\subsubsection*{Binária}
 	
+	\begin{figure}[H]
+	\centering
+	\begin{tabular}{rr}
+	\textbf{0} \phantom{0}0 & \textbf{1} \phantom{0}1
+	\end{tabular}
+	\caption{Dígitos Binários, 2020 d.C.}
+	\end{figure}
+	
 	\subsubsection*{Hexadecimal}
 	
 	\begin{figure}[H]
 	\centering
 	\begin{tabular}{rrrr}
-	\textbf{0} \phantom{0}0 & \textbf{1} \phantom{0}1 & \textbf{2} \phantom{0}2 & \textbf{3} \phantom{0}3\\
-	\textbf{4} \phantom{0}4 & \textbf{5} \phantom{0}5 & \textbf{6} \phantom{0}6 & \textbf{7} \phantom{0}7\\
-	\textbf{8} \phantom{0}8 & \textbf{9} \phantom{0}9 & \textbf{A} 10 & \textbf{B} 11\\
-	\textbf{C} 12 & \textbf{D} 13 & \textbf{E} 14 & \textbf{F}15
+	\textbf{0} \phantom{1}0 & \textbf{1} \phantom{1}1 & \textbf{2} \phantom{1}2 & \textbf{3} \phantom{1}3\\
+	\textbf{4} \phantom{1}4 & \textbf{5} \phantom{1}5 & \textbf{6} \phantom{1}6 & \textbf{7} \phantom{1}7\\
+	\textbf{8} \phantom{1}8 & \textbf{9} \phantom{1}9 & \textbf{A} 10 & \textbf{B} 11\\
+	\textbf{C} 12 & \textbf{D} 13 & \textbf{E} 14 & \textbf{F} 15
 	\end{tabular}
 	\caption{Dígitos Hexadecimais, 2020 d.C.}
 	\end{figure}
@@ -376,7 +429,7 @@ from time import perf_counter as clock
 	
 	Estamos habituados com a base decimal, muito provavelmente porquê temos 10 dedos. O pessoal da antiga Babilônia tinha um sistema sexagesiaml: Isso mesmo, eram 60 dígitos diferentes!
 	
-	\figura[width=\textwidth]{babylonian_numerals.png}{Dígitos Babilônicos 2000 a.C.}
+	\figura[width=\textwidth]{babylonian_numerals.png}{Dígitos Babilônicos 1500 a.C.}
 	
 	Na verdade, eram só 59 porquê eles ainda não tinham o zero e deixavam um espaço em branco no lugar dele o que na hora das contas devia ser uma Torre de Babel! Dá pra perceber que apesar disso, a composição dos símbolos ainda tem sua própria carga da notação decimal, mesclando-a com a base 6.\\
 	
@@ -402,14 +455,30 @@ from time import perf_counter as clock
 		\item Andamos para o próximo número e repetimos a etapa anterior.		
 	\end{enumerate}
 	
-	Uma maneira interessante de fazer isso é criando uma lista de tamanho $\mb{N} + 1$, ou seja, cujos índices vão de 0 até $\mb{N}$.
-	
+	Uma maneira interessante de fazer isso é criando uma lista de tamanho $\mb{N} + 1$, ou seja, cujos índices vão de 0 até $\mb{N}$.\\
+
+	\quest Implemente o crivo de Eratóstenes e, em seguida, elabore versões melhoradas do algoritmo, até onde conseguir.	
 	
 	\chap{Conjuntos e Dicionários (\type{set}, \type{dict})}
 	
 	\problem[2]{Música II}\label{p:musica2}
 	
 	Usando a função do exercício \textbf{Música I}[\ref{p:musica1}], podemos usar um dicionário para obter a frequência a partir do símbolo que representa a nota.
+
+
+	\begin{interlude}{\type{hash}}\label{i:hash}
+		
+	Para entender um pouco melhor como funcionam os conjuntos (\type{set}) e dicionários (\type{dict}) é importante compreender o que é e como funciona o \textit{\textbf{hash}}.
+	
+	
+	
+	\end{interlude}	
+	
+	\problem[4]{\textit{Blockchain}}\label{p:blockchain}
+	
+	Você já deve ter ouvido falar no \textit{Bitcoin}.
+	
+	
 	
 	\chap{Arquivos e Diretórios (\texttt{sys}, \texttt{os}, \stmt{with}, \type{open})}
 	
@@ -444,7 +513,7 @@ Anna,13241232392,15
 	
 	\end{interlude}
 	
-	\problem[3]{Envelopando o diretório}
+	\problem[2]{Sem sair do diretório}
 	
 	Frequentemente, um programa lê e escreve em determinados arquivos. No entanto, queremos trabalhar com arquivos que estão numa pasta específica. Como fazer pra ir até essa pasta, fazer o que é necessário e retornar ao diretório original?\\
 	

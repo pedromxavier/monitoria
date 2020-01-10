@@ -3,7 +3,7 @@
 \ProvidesPackage{comptype}
 
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[brazil]{babel}
+%%\RequirePackage[brazil]{babel} %% Issues...
 \RequirePackage{amsmath, mathtools, amssymb, wasysym}
 \RequirePackage{hyperref, url} 
 \RequirePackage{listings, textcomp}
@@ -83,28 +83,42 @@
 
 
 \newcommand{\copias}[2]{
-\begingroup
-	\newcount\foo
-	\foo=#2
-	\loop
-	  #1
-	  \advance \foo -1
-	\ifnum \foo>0
-	\repeat
-\endgroup
+\ifnum#2=1
+	#1
+\else
+	\ifnum#2=2
+		#1#1
+	\else
+		\ifnum#2=3
+			#1#1#1
+		\else
+			\ifnum#2=4
+				#1#1#1#1
+			\else
+				\ifnum#2=5
+					#1#1#1#1#1
+				\else
+					~
+				\fi
+			\fi
+		\fi
+	\fi
+\fi
 }
 
 \newcommand{\problem}[2][1]{
 	\addtocounter{subsection}{+1}
 	~\\
 	{\large\bfseries \arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}\\
-	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} \hspace{5pt} #2 $#1\star$}
+	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}
 }
 
 \newcommand{\chap}[1]{
 	\pagebreak
 	\section{#1}
 }
+
+\newcommand{\bref}[1]{[\ref{#1}]}
 
 \newcommand{\inter}{
 	\rule{\textwidth}{1.5pt}
@@ -144,6 +158,10 @@
 
 \newcommand{\quest}{%%
 	\textbf{Desafio:}
+}
+
+\newcommand{\incomplete}{%%
+	\textbf{\textcolor{red}{\texttt{!Incompleto!}}}
 }
 
 \def\gobblechar{\let\xchar= }

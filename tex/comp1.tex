@@ -514,6 +514,9 @@ def d(f, h=1e-6):
 
 	\quest Implemente o crivo de Eratóstenes e, em seguida, elabore versões melhoradas do algoritmo, até onde conseguir.
 	
+	\problem[3]{Diferencial \ROMAN{4} - Gradiente \incomplete}\label{p:diferencial4}
+	
+	
 	
 	
 	\chap{Conjuntos e Dicionários (\type{set}, \type{dict})}
@@ -541,17 +544,53 @@ def d(f, h=1e-6):
 		\centering
 		\begin{tabular}{|lc|}
 		\hline
+		\textbf{\textit{hash} anterior:} & 0025\\
+		\hline
 		\textbf{De:} & Pedro \\
 		\hline
 		\textbf{Para:} & Anna \\
-		\hline		
-		\textbf{Valor:} & \$42.0  \\
+		\hline
+		\textbf{Produto:} & Lápis \\
+		\hline	
+		\textbf{Valor:} & \$1.40 \\
+		\hline
+		\textbf{\textit{nonce}:} & 7840 \\
+		\hline
+		\textbf{\textit{hash}:} & 0098  \\
 		\hline
 		\end{tabular}
 		\label{fig:blockchain}
 		\caption{Bloco}
 	\end{figure}
 	
+	Além das informações habituais, é importante notar a presença do \textit{hash} e do \textit{nonce}. O valor do último campo é calculado a partir do \textit{hash} dos demais, inclusive do \textit{hash} proveniente do bloco anterior. Já o \textit{nonce} é um número qualquer, escolhido de forma que o \textit{hash} do bloco possua um determinado número de zeros a esquerda.\\
+	
+	O processo de escolher um \textit{nonce} é o que se entende por "mineração" no caso do \textit{Bitcoin}. Isso nada mais é do que a validação de um bloco. Uma vez atingido um valor de \textit{hash} satisfatório, o bloco está validado e pode ser adicionado ao \textit{Blockchain}. O próximo bloco terá o \textit{hash} do anterior presente no seu primeiro campo.\\
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tabular}{|lr|c|lr|}
+		\hline
+		\textbf{\textit{hash} anterior:} & 0025 &\hspace*{1cm}& \textbf{\textit{hash} anterior:} & 0098\\
+		\hline
+		\textbf{De:} & Pedro & & \textbf{De:} & Flávia \\
+		\hline
+		\textbf{Para:} & Anna & & \textbf{Para:} & Juca \\
+		\hline
+		\textbf{Produto:} & Lápis & & \textbf{Produto:} & Chapéu \\
+		\hline	
+		\textbf{Valor:} & \$1.40 & & \textbf{Valor:} & \$22.80\\
+		\hline
+		\textbf{\textit{nonce}:} & 7840 & & \textbf{\textit{nonce}:} & 1923 \\
+		\hline
+		\textbf{\textit{hash}:} & 0098 & & \textbf{\textit{hash}:} & \textcolor{red}{6327} \\
+		\hline
+		\end{tabular}
+		\label{fig:blockchain2}
+		\caption{Blocos}
+	\end{figure}	
+	
+	Aqui reside uma das principais ideias para a manutenção da legitimidade das transações: Se alguma das informações de um bloco for alterada, isso irá afetar o cálculo do seu \textit{hash}, o que fará com que este se torne inválido com probabilidade muito alta. Por conseguinte, o bloco à sua frente sofrerá do mesmo mal, pois o seu \textit{hash} maldito interfere no cálculo do \textit{hash} seguinte, e assim por diante. Dessa forma, uma auditoria simples é capaz de retornar a última operação válida.
 	
 	
 	\chap{Arquivos e Diretórios (\texttt{sys}, \texttt{os}, \stmt{with}, \type{open})}

@@ -16,8 +16,7 @@
 	~\\
 	Boa diversão! \par
 	
-	\cc
-	
+	\cc	
 	
 	\tableofcontents
 	\pagebreak
@@ -137,85 +136,85 @@ class Fracao(object):
 		\item Divisão de polinômios (\texttt{f/g} e \texttt{f\%g}) , que devem retornar respectivamente o quociente $q(x)$ e o resto $r(x)$ tais que $f(x) = g(x) q(x) + r(x)$.
 	\end{enumerate}
 	
-	\begin{interlude}{Conjuntos}
-	
-	No \texttt{Python} temos um tipo muito bacana, mas muito mesmo, chamado \type{set}. Esse carinha simula um conjunto do ponto de vista matemático, ou seja, é uma coleção de objetos distintos. Um \type{set} pode ser criado usando-se outro objeto ou informando os elementos entre colchetes:
-	
-	\begin{lstlisting}
-	>>> A = set([1,2,3])
-	>>> B = {x for x in range(2,5)}
-	>>> A
-	set([1, 2, 3])
-	>>> B
-	set([2, 3, 4])
-	>>> A - B
-	set([1])
-	>>> A | B
-	set([1, 2, 3, 4])
-	\end{lstlisting}
-	
-	O \type{set} permite realizar diversas operações entre conjuntos, sendo as mais importantes: a diferença (\texttt{-}), a união (\texttt{|}, \emph{ou binário}) e a interseção (\texttt{\&}, \emph{e binário}). 
-	
-	\end{interlude}
-	
-	\problem[5]{Grupos}
-	
-	Em Álgebra, um Grupo $G = (A, \ast)$ é formado por um conjunto $A$ e uma operação qualquer $\ast$, quando valem as seguintes regras:
-	
-	\begin{enumerate}
-		\item $(a \ast b) \in A \,\,\, \forall a,b \in A$ [O grupo é fechado para a operação.]
-		\item $\exists \, e \in A : e \ast a = a \ast e = a \,\,\, \forall a \in A$ [Existe o elemento neutro.]
-		\item $\exists \, a^{-1} \in A : a \ast a^{-1} = a^{-1} \ast a = e \,\,\, \forall a \in A$ [Existe o elemento inverso.]\\
-	\end{enumerate}
-	Construa um objeto \texttt{Grupo} que herda as características do \type{set}. Devem ser passados ao construtor: os elementos em uma coleção \texttt{A}, e uma função \texttt{f(a,b)} que realiza a operação $\ast$ sobre dois elementos do Grupo.
-	
-	\begin{lstlisting}
-def f(a,b):
-    return (a + b) % 5
-    
-class Grupo(set):
-    def __init__(self, A, f):
-        ...
-
-	    def __hash__(self):
-        	return hash(tuple(self))
-        
->>> G = Grupo([0,1,2,3,4], f)
->>> G
-{0, 1, 2, 3, 4}
->>> H = Grupo([0,1,2], f)
-Traceback (most recent call last):
-    File "<pyshell#1>", line 1, in <module>
-        raise Exception('Isso não é grupo!')
-Exception: Isso não é grupo!
-	\end{lstlisting}
-	
-	Sabido isso:
-	\begin{enumerate}
-		\item O construtor deve criar um erro quando as regras de Grupo não forem atendidas.
-		\item A visualização do grupo mostre os elementos entre colchetes usando o método \spm{repr}.
-	\end{enumerate}
-
-	\subsubsection{Subparte I: Produto}
-	O produto entre dois grupos é dado da seguinte forma:
-	\[GH := \{g \ast h : g \in G, h\in H\} \]
-	Defina o método \spm{mul} para atender a esse propósito.
-	
-	\subsubsection{Subparte II: Quociente}
-	Existe uma operação entre grupos chamada \emph{quociente} definida por:
-	\[G/H := \{gH : g \in G\} = \{\{g \ast h: h \in H\} : g \in G\}\]
-	Essa operação deve retornar um \emph{conjunto de grupos} e isso só é possível se o método \spm{hash} estiver definido como no modelo. Implemente essa operação usando o método \spm{truediv}.
-	
-	\subsubsection{Subparte III: Subgrupos}
-	Um Subgrupo $H$ de um Grupo $G$, que escrevemos $H < G$, é aquele cujo conjunto é subconjunto de $G$ e é $H$ também um Grupo. O tipo \type{set} já implementa os operadores \texttt{>}, \texttt{>=}, \texttt{<}, \texttt{<=} e \texttt{==} comparando dois objetos do ponto de vista dos conjuntos. Reescreva os métodos \spm{gt}, \spm{ge}, \spm{lt}, \spm{le} e \spm{eq}, respectivamente, para dizer verificar, por exemplo, se \texttt{H} é subgrupo de \texttt{G} através da expressão \texttt{H < G}.
-	Feito isso, construa um método da classe \texttt{Grupo} que retorne um conjunto contendo todos os subgrupos de um grupo \texttt{G}.\\
-	\\
-	\textbf{Dica} Teorema: \\
-	O \emph{Teorema de Lagrange} diz que sendo $G$ um grupo finito e $H$ um subgrupo de $G$, a ordem de $H$ divide a ordem de $G$.
-	\[H < G \implies |G| = |H| \cdot k, k \in \mathbb{N}\]
-	A ordem de um grupo $G$, escrita como $|G|$, é simplesmente o número de elementos em $G$, que pode ser obtida diretamente pela expressão \type{len}\texttt{(G)}.
-	
-	\pagebreak
+%	\begin{interlude}{Conjuntos}
+%	
+%	No \texttt{Python} temos um tipo muito bacana, mas muito mesmo, chamado \type{set}. Esse carinha simula um conjunto do ponto de vista matemático, ou seja, é uma coleção de objetos distintos. Um \type{set} pode ser criado usando-se outro objeto ou informando os elementos entre colchetes:
+%	
+%	\begin{lstlisting}
+%	>>> A = set([1,2,3])
+%	>>> B = {x for x in range(2,5)}
+%	>>> A
+%	set([1, 2, 3])
+%	>>> B
+%	set([2, 3, 4])
+%	>>> A - B
+%	set([1])
+%	>>> A | B
+%	set([1, 2, 3, 4])
+%	\end{lstlisting}
+%	
+%	O \type{set} permite realizar diversas operações entre conjuntos, sendo as mais importantes: a diferença (\texttt{-}), a união (\texttt{|}, \emph{ou binário}) e a interseção (\texttt{\&}, \emph{e binário}). 
+%	
+%	\end{interlude}
+%	
+%	\problem[5]{Grupos}
+%	
+%	Em Álgebra, um Grupo $G = (A, \ast)$ é formado por um conjunto $A$ e uma operação qualquer $\ast$, quando valem as seguintes regras:
+%	
+%	\begin{enumerate}
+%		\item $(a \ast b) \in A \,\,\, \forall a,b \in A$ [O grupo é fechado para a operação.]
+%		\item $\exists \, e \in A : e \ast a = a \ast e = a \,\,\, \forall a \in A$ [Existe o elemento neutro.]
+%		\item $\exists \, a^{-1} \in A : a \ast a^{-1} = a^{-1} \ast a = e \,\,\, \forall a \in A$ [Existe o elemento inverso.]\\
+%	\end{enumerate}
+%	Construa um objeto \texttt{Grupo} que herda as características do \type{set}. Devem ser passados ao construtor: os elementos em uma coleção \texttt{A}, e uma função \texttt{f(a,b)} que realiza a operação $\ast$ sobre dois elementos do Grupo.
+%	
+%	\begin{lstlisting}
+%def f(a,b):
+%    return (a + b) % 5
+%    
+%class Grupo(set):
+%    def __init__(self, A, f):
+%        ...
+%
+%	    def __hash__(self):
+%        	return hash(tuple(self))
+%        
+%>>> G = Grupo([0,1,2,3,4], f)
+%>>> G
+%{0, 1, 2, 3, 4}
+%>>> H = Grupo([0,1,2], f)
+%Traceback (most recent call last):
+%    File "<pyshell#1>", line 1, in <module>
+%        raise Exception('Isso não é grupo!')
+%Exception: Isso não é grupo!
+%	\end{lstlisting}
+%	
+%	Sabido isso:
+%	\begin{enumerate}
+%		\item O construtor deve criar um erro quando as regras de Grupo não forem atendidas.
+%		\item A visualização do grupo mostre os elementos entre colchetes usando o método \spm{repr}.
+%	\end{enumerate}
+%
+%	\subsubsection{Subparte I: Produto}
+%	O produto entre dois grupos é dado da seguinte forma:
+%	\[GH := \{g \ast h : g \in G, h\in H\} \]
+%	Defina o método \spm{mul} para atender a esse propósito.
+%	
+%	\subsubsection{Subparte II: Quociente}
+%	Existe uma operação entre grupos chamada \emph{quociente} definida por:
+%	\[G/H := \{gH : g \in G\} = \{\{g \ast h: h \in H\} : g \in G\}\]
+%	Essa operação deve retornar um \emph{conjunto de grupos} e isso só é possível se o método \spm{hash} estiver definido como no modelo. Implemente essa operação usando o método \spm{truediv}.
+%	
+%	\subsubsection{Subparte III: Subgrupos}
+%	Um Subgrupo $H$ de um Grupo $G$, que escrevemos $H < G$, é aquele cujo conjunto é subconjunto de $G$ e é $H$ também um Grupo. O tipo \type{set} já implementa os operadores \texttt{>}, \texttt{>=}, \texttt{<}, \texttt{<=} e \texttt{==} comparando dois objetos do ponto de vista dos conjuntos. Reescreva os métodos \spm{gt}, \spm{ge}, \spm{lt}, \spm{le} e \spm{eq}, respectivamente, para dizer verificar, por exemplo, se \texttt{H} é subgrupo de \texttt{G} através da expressão \texttt{H < G}.
+%	Feito isso, construa um método da classe \texttt{Grupo} que retorne um conjunto contendo todos os subgrupos de um grupo \texttt{G}.\\
+%	\\
+%	\textbf{Dica} Teorema: \\
+%	O \emph{Teorema de Lagrange} diz que sendo $G$ um grupo finito e $H$ um subgrupo de $G$, a ordem de $H$ divide a ordem de $G$.
+%	\[H < G \implies |G| = |H| \cdot k, k \in \mathbb{N}\]
+%	A ordem de um grupo $G$, escrita como $|G|$, é simplesmente o número de elementos em $G$, que pode ser obtida diretamente pela expressão \type{len}\texttt{(G)}.
+%	
+%	\pagebreak
 	
 	\begin{interlude}{\texttt{Beep}}
 	
@@ -267,11 +266,11 @@ def Beep(f, ms):
 	
 	\chap{Interface Gráfica (\texttt{tkinter})}
 	
-	\problem[4]{Preenchendo o espaço.}\label{p:hilbert}
+	\problem[4]{Preenchendo o espaço. \incomplete}\label{p:hilbert}
 	
 	Curvas de Hilbert	
 	
-	\problem[4]{Números Primos II}
+	\problem[4]{Números Primos II \incomplete}
 	
 	Muitas figuras interessantes se formam a partir dos números primos.
 	
@@ -358,7 +357,7 @@ root.mainloop()
 
 	\chap{Métodos numéricos (\texttt{numpy})}
 
-	\problem[3]{Redes Neurais}
+	\problem[3]{Redes Neurais \incomplete}
 
 	\begin{interlude}{Aritmética de ponto-flutuante (\type{float})}
 	
@@ -389,7 +388,13 @@ root.mainloop()
 	
 	\end{interlude}
 	
-	\problem[5]{Computação Quântica}
+	\problem[5]{Computação Quântica \incomplete}
+	
+	\begin{figure}[H]
+		\centering\Large
+		$$\ket{\uparrow} + \ket{\downarrow} \hspace{40pt} \ket{\text{A}} + \ket{\Omega} \hspace{40pt} \ket{0} + \ket{1}$$
+	\caption{Superposição}
+	\end{figure}
 	
 	
 	\chap{Plotagem de Gráficos (\texttt{Matplotlib})}

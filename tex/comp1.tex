@@ -119,9 +119,19 @@ def f(n):
 		return f(n-1) + f(n-2)
 	\end{lstlisting}
 	
-	\quest Tente encontrar, usando a função acima, o número $F_{50}$. Reflita um pouco sobre o resultado.
+	\quest Tente encontrar, usando a função acima, o número $F_{50}$. Reflita um pouco sobre o resultado. O que aconteceu?
 	
-	\begin{interlude}{Decoradores}\label{i:decoradores}
+	\problem[3]{Nibonacci \label{p:nibonacci}}
+	
+	O $n$-ésimo termo da sequência de Nibonacci é dado por
+	\begin{align*}
+		\begin{cases}
+		\displaystyle N_{n} = \sum_{k=1}^{N} N_{n-k}\\
+		N_{0} = 0 \text{ e } N_{j} = 1 \text{ quando } 0 < j \leq N
+		\end{cases}
+	\end{align*}
+	
+	\begin{interlude}{Decoradores \label{i:decoradores}}
 	
 	Decoradores são funções que proporcionam uma maneira simples de alterar o funcionamento de uma função no momento da sua definição. Um decorador recebe uma função como parâmetro e dever retornar também uma função.
 	
@@ -134,7 +144,9 @@ def mod3(f):
 @mod3
 def f(x):
 	return x ** 2 + 1
-	\end{lstlisting}	
+	\end{lstlisting}
+	
+	O decorador acima, \texttt{@mod3}, 
 	
 	\end{interlude}
 	
@@ -148,7 +160,7 @@ from time import perf_counter as clock
 	
 	\quest O seu decorador deve alterar a função para que ela retorne uma tupla contendo o resultado e o tempo de execução em segundos.
 	
-	\problem[1]{Diferencial I}
+	\problem[1]{Diferencial I \label{p:diferencial1}}
 	
 	Aprendemos em Cálculo I que a derivada de uma função $f(x)$ pode ser calculada como:
 	
@@ -171,17 +183,17 @@ from time import perf_counter as clock
 	\textbf{Detalhe:} Você pode definir o parâmetro \texttt{h} por um valor padrão (\textit{default}):
 	
 	\begin{lstlisting}{}
-def d(f, h=1e-6):
+def d(f, h=0.0001):
 	...
 	\end{lstlisting}
 	
-	\problem[2]{Diferencial \ROMAN{2}}
+	\problem[2]{Diferencial \ROMAN{2} - O Retorno \label{p:diferencial2}}
 	
 	Se calculamos a derivada da derivada de uma função $f(x)$, obtemos a sua segunda derivada, $f''(x)$. E se calcularmos a derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada da derivada?\\
 	
 	\quest Faça uma função \texttt{D(f, n, h)} que calcule a $n$-ésima derivada da função \texttt{f}, de maneira recursiva.
 	
-	\problem[3]{Diferencial \ROMAN{3} - Parcial}\label{p:diferencial3}
+	\problem[3]{Diferencial \ROMAN{3} - Parcial \label{p:diferencial3}}
 	
 	Em uma função com mais de uma variável, a noção de derivada é entendida através das derivadas parciais.\\
 	
@@ -244,22 +256,24 @@ def d(f, h=1e-6):
 
 	\begin{center}
 	\ttfamily\small
-	\begin{TAB}(c, 0.2cm, 0.2cm)[2pt]{|c|c|c|c|c|}{|c|c|c|c|c|c|c|c|c|}
-		Idade & Altura(m) & Peso(kg)  & &\\
-		12 & 1.33 & 40 & & \\
-		65 & 1.70 & 72 & & \\
-		15 & 1.63 & 51 & & \\
-		59 & 1.65 & 55 & & \\
-		34 & 1.68 & 84 & & \\
-		42 & 1.72 & 78 & & \\
-\phantom{0}9 & 1.10 & 33 & & \\
-		22 & 1.80 & 79 & & \\
+	\begin{TAB}(c, 0.2cm, 0.2cm)[2pt]{|c|c|c|c|}{|c|c|c|c|c|c|c|c|c|}
+		Idade & Altura(m) & Peso(kg) & Saudável\\
+		12  & 1.33 & 40 & Sim\\
+		65  & 1.70 & 72 & Não\\
+		315 & 1.63 & 51 & Não\\
+		59  & 1.65 & 55 & Sim\\
+		34  & 1.68 & 84 & Sim\\
+		42  & 1.72 & 78 & Sim\\
+		 9  & 1.10 & 33 & Sim\\
+		22  & 1.80 & 79 & Não\\
 	\end{TAB}
 	\end{center}	
 	
 	\quest Usando condicionais, construa uma função que consiga classificar os dados da tabela, tentando usar o mínimo possível de etapas.
 	
-	\problem[2]{Robô}
+	\problem[2]{Um Problema Interior \incomplete}
+	
+	\quest Fazer uma função que, dados dois retângulos, retorna a intersecção entre eles, ou seja, um outro retângulo ou \stmt{None}.
 	
 		
 	
@@ -514,19 +528,26 @@ def d(f, h=1e-6):
 
 	\quest Implemente o crivo de Eratóstenes e, em seguida, elabore versões melhoradas do algoritmo, até onde conseguir.
 	
-	\problem[3]{Diferencial \ROMAN{4} - Gradiente \incomplete}\label{p:diferencial4}
+	\problem[3]{Diferencial \ROMAN{4} - Gradiente \incomplete \label{p:diferencial4}}
+	
+	\quest Usando os resultados das questões anteriores (Diferencial I, II e III \bref{p:diferencial1}\bref{p:diferencial2}\bref{p:diferencial3}) faça uma função \texttt{grad(f, h)} que retorne o gradiente de uma outra função (que também é uma função!).
+	
+	
+	\problem[4]{Collatz \ROMAN{2} \label{p:collatz2}}
+	
+	
 	
 	
 	
 	
 	\chap{Conjuntos e Dicionários (\type{set}, \type{dict})}
 	
-	\problem[2]{Música II \incomplete}\label{p:musica2}
+	\problem[2]{Música II \incomplete \label{p:musica2}}
 	
 	Usando a função do exercício \textbf{Música I}[\ref{p:musica1}], podemos usar um dicionário para obter a frequência a partir do símbolo que representa a nota.
 
 
-	\begin{interlude}{\type{hash} \incomplete}\label{i:hash}
+	\begin{interlude}{\type{hash} \incomplete \label{i:hash}}
 		
 	Para entender um pouco melhor como funcionam os conjuntos (\type{set}) e dicionários (\type{dict}) é importante compreender o que é e como funciona o \textit{\textbf{hash}}.
 	
@@ -591,6 +612,8 @@ def d(f, h=1e-6):
 	\end{figure}	
 	
 	Aqui reside uma das principais ideias para a manutenção da legitimidade das transações: Se alguma das informações de um bloco for alterada, isso irá afetar o cálculo do seu \textit{hash}, o que fará com que este se torne inválido com probabilidade muito alta. Por conseguinte, o bloco à sua frente sofrerá do mesmo mal, pois o seu \textit{hash} maldito interfere no cálculo do \textit{hash} seguinte, e assim por diante. Dessa forma, uma auditoria simples é capaz de retornar a última operação válida.
+	
+	\quest Em
 	
 	
 	\chap{Arquivos e Diretórios (\texttt{sys}, \texttt{os}, \stmt{with}, \type{open})}

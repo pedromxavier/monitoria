@@ -146,7 +146,7 @@ def f(x):
 	return x ** 2 + 1
 	\end{lstlisting}
 	
-	O decorador acima, \texttt{@mod3}, 
+	O decorador acima, \texttt{@mod3}, faz com que o resultado da função decorada seja calculado módulo 3.
 	
 	\end{interlude}
 	
@@ -195,7 +195,7 @@ def d(f, h=0.0001):
 	
 	\problem[3]{Diferencial \ROMAN{3} - Parcial \label{p:diferencial3}}
 	
-	Em uma função com mais de uma variável, a noção de derivada é entendida através das derivadas parciais.\\
+	Para compreender a variação no caso de uma função com mais de uma variável, calculamos as suas derivadas parciais.\\
 	
 	\quest Implemente uma função \texttt{D(f, i, h)} que calcule a derivada parcial com respeito a $i$-ésima variável $x_i$. A função deve retornar uma outra função, supondo que \texttt{f} depende somente de \texttt{x}, um vetor.
 	
@@ -271,9 +271,13 @@ def d(f, h=0.0001):
 	
 	\quest Usando condicionais, construa uma função que consiga classificar os dados da tabela, tentando usar o mínimo possível de etapas.
 	
-	\problem[2]{Um Problema Interior \incomplete}
+	\problem[2]{Um Problema Interior \ROMAN{1}}
+
+	Uma maneira simples de representar retângulos (dispostos de forma alinhada com os eixos do plano) em um computador é através de um par de pontos, onde cada ponto é um par ordenado $(x, y)$. Por convenção, o primeiro ponto indica o canto superior esquerdo do retângulo; e o segundo, o canto inferior direito.\\
 	
-	\quest Fazer uma função que, dados dois retângulos, retorna a intersecção entre eles, ou seja, um outro retângulo ou \stmt{None}.
+	\figura[width=\textwidth]{retangulos.pdf}{Retângulos Sobrepostos}
+	
+	\quest Fazer uma função que, dados dois retângulos, retorna a intersecção entre eles, ou seja: Um outro retângulo ou \stmt{None}, caso não haja sobreposição.
 	
 		
 	
@@ -439,13 +443,13 @@ def d(f, h=0.0001):
 	
 	blablabla sobre números romanos\\
 	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
 		\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline		
-		& & & & & &\\
+		M & D & C & L & X & V & I\\
 		\hline
-		& & & & & &\\
+		1000 & 500 & 100 & 50 & 10 & 5 & 1\\
 		\hline
 		\end{tabular}
 	\end{figure}

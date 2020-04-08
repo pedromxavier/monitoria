@@ -26,7 +26,7 @@ Pedro Maciel Xavier \\
 	
 	Uma maneira simples de representar retângulos em um computador é através de um par de pontos, onde cada ponto é um par ordenado $(x, y)$. Por convenção, o primeiro ponto indica o canto superior esquerdo do retângulo; e o segundo, o canto inferior direito.\\
 	
-	\input{retangulos.tikz}
+	%% \input{retangulos.tikz}
 	
 	Assim, o retângulo \textcolor{blue}{\textbf{azul}} pode ser descrito pelos pares $(1, 4)$ e $(5, 2)$, enquanto o retângulo \textcolor{red}{\textbf{vermelho}} é dado pelos pontos $(3, 3)$ e $(6, 1)$. A intersecção entre os dois é justamente a área \textcolor{indigo}{\textbf{lilás}} que se encontra entre os pontos $(3, 3)$ e $(5, 2)$. \\
 	
@@ -70,7 +70,27 @@ Pedro Maciel Xavier \\
 	
 	\pagebreak
 	
-	\problemsec[0]{Unknown}
+	\problemsec[0]{Coordenadas polares.}
+	
+	Estamos acostumados a pensar em coordenadas cartesianas na hora de descrever a geometria de um determinado objeto. No entanto, o sistema de coordenadas deve ser escolhido conforme o cenário em que se está trabalhando.
+	
+	\input{cartesiano.tikz}
+	
+	O ponto $(4, 3)$, quando escrito em coordenadas polares, nos dá:
+	\begin{align*}
+		r &= \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5\\
+		\theta &= \arctan\frac{3}{4} = 0.01123 \text{ rad} \approx 36.87^{\circ}
+	\end{align*}
+	
+	\quest Construa duas funções: \texttt{polar(x, y)} levará um ponto em coordenadas cartesianas $(x, y)$ para a forma polar $(r, \theta)$ e \texttt{cart(r, theta)}, que fará o caminho contrário.\\
+	
+	\example
+	\begin{lstlisting}
+>>> polar(-1, 0)
+(1, 3.141592653589793)
+>>> cart(2, math.pi)
+(-2, 0)
+	\end{lstlisting}
 	
 	\pagebreak
 	

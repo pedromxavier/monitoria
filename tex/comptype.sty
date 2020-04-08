@@ -7,11 +7,12 @@
 \RequirePackage{amsmath, mathtools, amssymb, wasysym}
 \RequirePackage{hyperref, url} 
 \RequirePackage{listings, textcomp}
+\RequirePackage{shadowtext}
 \RequirePackage{courier}
 \RequirePackage{graphicx, float}
 \RequirePackage[thinlines]{easytable}
 \RequirePackage[dvipsnames]{xcolor}
-
+\RequirePackage{tikz}
 \setlength{\parindent}{0pt}
 
 
@@ -21,6 +22,11 @@
 \definecolor{pycomments}{RGB}{221, 0, 0}
 \definecolor{pynames}{RGB}{0, 0, 255}
 \definecolor{pystrings}{RGB}{0, 170, 0}
+
+%% Other Colors
+\definecolor{darkyellow}{rgb}{0.9,0.9,0}
+\definecolor{darkgreen}{rgb}{0,0.8,0}
+\definecolor{indigo}{rgb}{0.7,0,0.7}
 
 \lstset{
 	basicstyle=\ttfamily,
@@ -113,6 +119,13 @@
 	\addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection} \hspace{5pt} #2 \copias{$\star$}{#1}}
 }
 
+\newcommand{\problemsec}[2][1]{
+	\addtocounter{section}{+1}
+	~\\
+	{\large\bfseries \arabic{section} \hspace{5pt} #2 \copias{$\star$}{#1}}\\
+	\addcontentsline{toc}{section}{\arabic{section} \hspace{5pt} #2 \copias{$\star$}{#1}}
+}
+
 \newcommand{\chap}[1]{
 	\pagebreak
 	\section{#1}
@@ -138,6 +151,11 @@
 
 \graphicspath{{../figs/}}
 
+\makeatletter
+\def\input@path{{../src/}}
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+
 \newcommand{\til}{\texttildelow}
 
 \newcommand{\ket}[1]{\ensuremath{%%
@@ -161,6 +179,10 @@
 	\pagebreak
 }
 
+\newcommand{\example}{%%
+	\textbf{Exemplo:}
+}
+
 \newcommand{\quest}{%%
 	\textbf{Desafio:}
 }
@@ -179,6 +201,8 @@
   \fi
   \next}
 \def\makelist#1{\assignthencheck#1\relax}
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
 
 \endinput
 

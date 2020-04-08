@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+
+\usepackage{comptype}
+
+\title{%%
+Lista de Computação para Arquitetura\\
+{\normalsize LAMO / FAU / UFRJ}
+}
+
+\author{%%
+Pedro Maciel Xavier \\ 
+\texttt{pedromxavier@poli.ufrj.br}
+}
+
+\begin{document}
+	\maketitle
+	\section*{Introdução}
+	
+	Essa lista de exercícios está sendo pensada para uma disciplina de Computação no curso de Arquitetura e Urbanismo.
+	
+	\cc
+	
+	%% \tableofcontents
+	
+	\problemsec[0]{Intersecção de Retângulos}
+	
+	Uma maneira simples de representar retângulos em um computador é através de um par de pontos, onde cada ponto é um par ordenado $(x, y)$. Por convenção, o primeiro ponto indica o canto superior esquerdo do retângulo; e o segundo, o canto inferior direito.\\
+	
+	\input{retangulos.tikz}
+	
+	Assim, o retângulo \textcolor{blue}{\textbf{azul}} pode ser descrito pelos pares $(1, 4)$ e $(5, 2)$, enquanto o retângulo \textcolor{red}{\textbf{vermelho}} é dado pelos pontos $(3, 3)$ e $(6, 1)$. A intersecção entre os dois é justamente a área \textcolor{indigo}{\textbf{lilás}} que se encontra entre os pontos $(3, 3)$ e $(5, 2)$. \\
+	
+	\quest Fazer uma função que, dados dois retângulos, retorna a intersecção entre eles, ou seja, um outro retângulo ou \stmt{None}, caso não haja sobreposição.\\
+	
+	\example
+	\begin{lstlisting}
+>>> A = (1, 4, 5, 2)
+>>> B = (3, 3, 6, 1)
+>>> C = intersec(A, B)
+>>> print(C)
+(3, 3, 5, 2)
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	\problemsec[0]{Anos bissextos}
+	
+	A humanidade sempre teve problemas com a contagem dos anos, uma vez que estes duram 365,24 dias. O calendário Juliano, que vigorou de 45 a.C. até 1582 d.C., introduziu o uso dos anos bissextos acrescentou um dia a cada 3 anos. O erro só foi percebido décadas depois e o acréscimo foi abandonado. Isso fez com que se acumulasse um erro de cerca de 10 dias até o momento da transição para o calendário Gregoriano. Por conta disso, os dias entre 4 e 15 de outubro de 1582 simplesmente não existiram.\\
+	
+	Com este novo calendário foi definida a nova regra para o cálculo dos anos bissextos:
+	
+	\begin{itemize}
+		\item De 4 em 4 anos é ano bissexto.
+		\item De 100 em 100 anos não é ano bissexto.
+		\item De 400 em 400 anos é ano bissexto.
+		\item Prevalecem as últimas regras sobre as primeiras.
+	\end{itemize}
+	
+	\quest Sabendo que o ano 2000 foi bissexto, crie uma função que, dado um ano, informe se ele é bissexto ou não, retornando \stmt{True} ou \stmt{False}, respectivamente.\\
+	
+	\example
+	\begin{lstlisting}
+	>>> bissexto(2000)
+	True
+	>>> bissexto(2100)
+	False
+	>>> bissexto(2104)
+	True
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	\problemsec[0]{Unknown}
+	
+	\pagebreak
+	
+	\problemsec[0]{Sequência de \emph{Collatz}}
+	
+	A sequência de \emph{Collatz} é obtida aplicando sucessivamente a função
+	{\large
+	\begin{align*}
+		f(n) = \begin{cases}
+		3n + 1, &\text{ se } n \text{ for ímpar}\\
+		n \div 2, &\text{ se } n \text{ for par}
+		\end{cases}
+	\end{align*}
+	}
+	Por exemplo, começamos com $n = 26$. Após sucessivas aplicações temos:
+		$$26 \to 13 \to 40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$$
+	Isso nos dá uma sequência com $11$ números. $40$ é maior que $26$, mas sua sequência só teria $9$ números.\\
+	\\
+	Ainda não se sabe se todos os números induzem uma sequência que termina em $1$. No entanto, até agora não foi encontrado um número sequer em que isso não tenha acontecido!\\
+	\\
+	\quest Faça uma função que calcule o comprimento da sequência gerada a partir de um número natural $n$ qualquer.\\
+
+	\example
+	\begin{lstlisting}
+>>> collatz(26)
+11
+>>> collatz(40)
+9
+>>> collatz(1)
+1
+	\end{lstlisting}
+	
+\end{document}

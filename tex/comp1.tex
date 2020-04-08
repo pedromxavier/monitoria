@@ -534,8 +534,14 @@ def d(f, h=0.0001):
 	
 	\problem[3]{Diferencial \ROMAN{4} - Gradiente \incomplete \label{p:diferencial4}}
 	
-	\quest Usando os resultados das questões anteriores (Diferencial I, II e III \bref{p:diferencial1}\bref{p:diferencial2}\bref{p:diferencial3}) faça uma função \texttt{grad(f, h)} que retorne o gradiente de uma outra função (que também é uma função!).
+	$$\nabla f(\mb{x}) = \left[
+	\pd{f(\mb{x})}{x_1},
+	\pd{f(\mb{x})}{x_2},
+	\cdots,
+	\pd{f(\mb{x})}{x_n}
+	\right]^{T}$$
 	
+	\quest Usando os resultados das questões anteriores (Diferencial I, II e III \bref{p:diferencial1}\bref{p:diferencial2}\bref{p:diferencial3}) faça uma função \texttt{grad(f, h)} que retorne o gradiente de uma função \texttt{f}.
 	
 	\problem[4]{Collatz \ROMAN{2} \label{p:collatz2}}
 	

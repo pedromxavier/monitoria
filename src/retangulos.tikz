@@ -1,0 +1,17 @@
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+	\draw[step=1.0,black,thin]    ( 7, 5) grid      ( 0, 0);
+	\draw[draw=black,fill=blue]   ( 1, 4) rectangle ( 5, 2);
+	\draw[draw=black,fill=red] ( 3, 3) rectangle ( 6, 1);
+	\draw[draw=black,fill=indigo]  ( 3, 3) rectangle ( 5, 2);
+	\foreach \i in {1,...,7} {
+		\node at (\i, -0.4) {$\i$};
+	}
+	\foreach \i in {1,...,5} {
+		\node at (-0.4, \i) {$\i$};
+	}
+	\node at (-0.3, -0.3) {$0$};
+	\end{tikzpicture}
+	\caption{Retângulos}
+\end{figure}

@@ -1,0 +1,14 @@
+\begin{figure}[H]
+	\centering
+	\resizebox{200pt}{!}{%
+	\begin{tikzpicture}[thick]
+		\draw[step=1.0,black,thick] (-1.5,-1.5) grid (1.5, 1.5);
+		\foreach \i in {-1, ..., 1} {
+			\node[align=left] at (\i, -2) {$\i$};
+			\node[align=left] at (-2, \i) {$\i$};
+		}
+		\draw[fill=blue, semitransparent] (0,0) circle[radius=1];
+	\end{tikzpicture}
+	}
+	\caption{Círculo Unitário}
+\end{figure}

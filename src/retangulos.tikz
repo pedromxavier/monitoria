@@ -1,5 +1,6 @@
 \begin{figure}[H]
 	\centering
+	\scalebox{0.8}{
 	\begin{tikzpicture}
 	\draw[step=1.0,black,thin]    ( 7, 5) grid      ( 0, 0);
 	\draw[draw=black,fill=blue]   ( 1, 4) rectangle ( 5, 2);
@@ -13,5 +14,6 @@
 	}
 	\node at (-0.3, -0.3) {$0$};
 	\end{tikzpicture}
+	}
 	\caption{Retângulos}
 \end{figure}

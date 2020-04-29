@@ -1,0 +1,30 @@
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\scalebox{1.5}{%
+			\begin{tikzpicture}
+			\draw[->] (-2, 0) -- (2,0) node[right] {$x$};
+			\draw[->] (0, 0) -- (0,1.4) node[above] {$y$};			
+			\draw[domain=-1:1,smooth,variable=\x,blue] plot ({\x},{1});
+			\draw
+			\draw[blue] (-1, 0) -- (-1, 1);
+			\draw[blue] ( 1, 0) -- ( 1, 1);
+			\end{tikzpicture}
+			}
+		\caption{Distribuição Uniforme}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\scalebox{1.5}{%
+			\begin{tikzpicture}
+			\draw[->] (-2, 0) -- (2,0) node[right] {$x$};
+			\draw[->] (0, 0) -- (0,1.4) node[above] {$y$};
+			\draw[domain=-2:2,smooth,variable=\x,red] plot ({\x},{exp(-\x*\x)});
+			\end{tikzpicture}
+			}
+		\caption{Distribuição Normal}
+	\end{minipage}
+	\caption{Pontos aleatórios sobre uma região do plano}
+\end{figure}

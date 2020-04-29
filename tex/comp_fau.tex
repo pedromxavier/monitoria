@@ -19,18 +19,18 @@ Pedro Maciel Xavier \\
 	
 	\tableofcontents
 	
-	\cc
+	%% \cc
 	
 	\pagebreak
 	
 	
-	\section{Aula I - Tipos, Variáveis e Funções \\ (\stmt{def}, \stmt{return})}
+	\section{Aula I - Tipos, Variáveis e Funções \\ (\stmt{def}, \stmt{return}, \type{int}, \type{float})}
 	
 	\problem[0]{As notas musicais}
 	
 	Cada nota musical corresponde a uma frequência distinta (em Hz). Tomando o lá central (A4) como referência, em 440Hz, podemos calcular a frequência das outras notas com base na distância relativa a essa nota.
 	$$f(n) = 440 \times 2^{(n/12)}$$
-	Na tabela abaixo, vemos as notas musicais, seus símbolos, e a distância em semitons\footnote{Um Tom equivale a dois Semitons.} para o lá central (A4).
+	Na tabela abaixo, vemos as notas musicais, seus símbolos, e a distância em semitons\footnote{Dois semitons equivalem a um tom. No violão, cada casa de uma mesma corda está a um semitom da casa adjacente. No piano, quando há uma tecla preta entre as brancas, há uma distância de um tom entre elas. Quando a tecla preta não está, a distância é de meio tom, ou um semitom.} para o lá central (A4).
 	
 	\begin{center}
 		\begin{tabular}{|l|c c c c c c c c c c c c|}
@@ -48,13 +48,9 @@ Pedro Maciel Xavier \\
 	
 	\example 
 	\begin{lstlisting}
->>> f(0)
-440
->>> f(2)
-494
->>> f(3)
-523
->>> f(12)
+>>> f(0), f(2), f(3)
+(440, 494, 523)
+>>> f(12) # A frequência dobra a cada 12 semitons!
 880
 	\end{lstlisting}
 	
@@ -74,9 +70,9 @@ Pedro Maciel Xavier \\
 	\theta &= \arctan\frac{3}{4} = 0.6435 \text{ rad} \approx 36.87^{\circ}
 	\end{align*}
 	
-	\quest Construa duas funções: \texttt{polar(x, y)} levará um ponto em coordenadas cartesianas $(x, y)$ para a forma polar $(r, \theta)$ e \texttt{cart(r, theta)}, que fará o caminho contrário.\\
+	\quest{} Construa duas funções: \texttt{polar(x, y)} levará um ponto em coordenadas cartesianas $(x, y)$ para a forma polar $(r, \theta)$ e \texttt{cart(r, theta)}, que fará o caminho contrário.\\
 	
-	\clue O módulo \texttt{math} contém as funções trigonométricas \texttt{math.sin}, \texttt{math.cos} e \texttt{math.tan}, assim como as inversas \texttt{math.asin}, \texttt{math.acos} e \texttt{math.atan}. Para calcula a raiz quadrada, você pode usar a função \texttt{math.sqrt}.\\
+	\clue{} O módulo \texttt{math} contém as funções trigonométricas \texttt{math.sin}, \texttt{math.cos} e \texttt{math.tan}, assim como as inversas \texttt{math.asin}, \texttt{math.acos} e \texttt{math.atan}. Para a raiz quadrada, você pode usar a função \texttt{math.sqrt}.\\
 	
 	\example
 	\begin{lstlisting}
@@ -89,13 +85,27 @@ Pedro Maciel Xavier \\
 	
 	\pagebreak
 	
-	\problem[0]{Funções}
+	\problem[0]{Números de Fibonacci e a proporção áurea}
+
+	A proporção áurea, muitas vezes representada pela letra grega $\varphi$ (phi), ficou conhecida ainda na grécia antiga por representar um padrão de beleza estética. Sua presença se mostrou marcante também na construção artística renascentista e se encontra até hoje em objetos do cotidiano como nas telas de celulares e nos cartões de crédito.
+	
+	\input{fibonacci.tikz}
+	
+	A constante numérica que representa a razão áurea está intimamente ligada a uma sequência de números também há muito conhecida:
+	$$0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...$$
+	Esta sequência foi descoberta por Fibonacci enquanto estudava a reprodução dos coelhos. Depois disso, padrões dessa forma foram encontrados em vários outros processos da natureza, desde a forma dos girassóis até as ramificações das algas marinhas. A sequência começa com o 0 e o 1. Para calcular qualquer outro número, basta somar os seus dois antecessores. A proporção áurea, por sua vez, é aproximada pela razão entre dois números de Fibonacci consecutivos:
+	$$\varphi \approx \frac{F_{i+1}}{F_{i}}$$
+	A aproximação fica melhor conforme os números escolhidos se tornam maiores.\\
+	
+	\quest Faça uma função que calcule o $n$-ésimo número de Fibonacci. Em seguida use a função que você criou para calcular uma aproximação da razão áurea.
+	
+	
 	
 	\pagebreak
 	
-	\section{Aula II - Condicionais \\(\stmt{if}, \stmt{elif}, \stmt{else})}
+	\section{Aula II - Condicionais \\(\stmt{if}, \stmt{elif}, \stmt{else}, \type{bool}, \stmt{True}, \stmt{False})}
 	
-	\problem[0]{Dentro do círculo}
+	\problem[0]{Dentro do círculo\label{sec:2.1}}
 	
 	O círculo unitário é aquele que tem raio $1$ e se encontra centrado na origem $(0, 0)$ do plano cartesiano.
 	
@@ -126,6 +136,8 @@ True
 	Assim, o retângulo \textcolor{blue}{\textbf{azul}} pode ser descrito pelos pares $(1, 4)$ e $(5, 2)$, enquanto o retângulo \textcolor{red}{\textbf{vermelho}} é dado pelos pontos $(3, 3)$ e $(6, 1)$. A intersecção entre os dois é justamente a área \textcolor{indigo}{\textbf{lilás}} que se encontra entre os pontos $(3, 3)$ e $(5, 2)$. \\
 	
 	\quest Fazer uma função que, dados dois retângulos, retorna a intersecção entre eles, ou seja, um outro retângulo ou \stmt{None}, caso não haja sobreposição.\\
+	
+	\clue Utilize as funções \type{max} e \type{min}.\\
 	
 	\example
 	\begin{lstlisting}
@@ -183,7 +195,7 @@ True
 	
 	\pagebreak
 	
-	\section{Aula III - Listas e Loops \\(\stmt{while}, \stmt{for})}
+	\section{Aula III - Listas e Loops \\(\stmt{while}, \stmt{for}, \type{list})}
 	
 	\problem[0]{Sequência de \emph{Collatz}}
 	
@@ -219,9 +231,7 @@ True
 	\problem[0]{Crivo}
 	
 	O Eratóstenes foi um cara que viveu em 200 a.C., inventou um crivo e calculou a curvatura da terra.
-	\vspace{-10pt}
-	\figura[width=100pt]{eratostenes.png}{Eratóstenes de Cirene}
-	\vspace{-30pt}
+	\figura[height=80pt]{eratostenes.png}{Eratóstenes de Cirene}
 	Um \textbf{crivo} é uma forma de saber quem são os números primos até um determinado limite $\mb{N}$. O Crivo de Eratóstenes funciona de forma bem simples:
 	
 	\begin{enumerate}
@@ -248,7 +258,100 @@ True
 	
 	\pagebreak
 	
-	\problem[0]{Loops}
+	\problem[0]{Troco}
+	
+	Abaixo temos as moedas atualmente em circulação no Brasil. Como não temos mais a moeda de 1 centavo, não é possível dar troco para qualquer quantia. Por exemplo, se um estabelecimento deve R\$ 0,91 de troco a um cliente, este daria 95 centavos de volta, conforme recomenda o PROCON.
+	\figura[width=200pt]{moedas.png}{Moedas em circulação no Brasil}
+	Quando se trabalha com dinheiro no computador, é comum fazer operações com centavos, e não com o valor usual da moeda. Assim, utiliza-se o tipo \type{int} em vez de usar o \type{float}, que pode trazer problemas de arredondamento.\\
+	
+	\quest Faça uma função que, dada uma quantia qualquer em centavos, retorne uma lista contendo a quantidade de cada moeda, de maneira a utilizar a menor quantidade de moedas possível.\\
+	
+	\clue Começe com uma lista contendo os valores das moedas, em centavos.\\
+	
+	\begin{lstlisting}
+moedas = [100, 50, 25, 10, 5]
+	\end{lstlisting}	
+	~\\
+	\example
+	\begin{lstlisting}
+>>> troco(200)
+[2, 0, 0, 0, 0]
+>>> troco(91) # aqui daremos 95 centavos de troco!
+[0, 1, 1, 2, 0]
+	\end{lstlisting}
+	\pagebreak
+	
+	\section{Aula IV - Matrizes e Aleatoriedade}
+	
+	\problem[0]{Viagem pela Europa}
+	
+	O jogo Viagem pela Europa\footnote{É um jogo bastante antigo e que não se encontra mais nas lojas. Para se ter uma ideia, no mapa aparece a Alemanha ainda dividida nas porções Ocidental e Oriental.} tem um mapa com diversas cidades ligadas por caminhos. Quando começa, cada jogador recebe uma série de cartas e tem que passar por todas elas, cumprindo o roteiro na ordem que preferir. A cada turno se joga um dado, que diz quantas cidades o jogador pode ir adiante.
+	
+	\figura[width=200pt]{viagem-pela-europa.png}{Caixa do Jogo Viagem Pela Europa}
+	
+	Podemos representar o tabuleiro do jogo usando uma matriz $A$ de dimensão $N \times N$, onde $N$ é o número de cidades. Assim, o valor da posição \code{A[i][j]} será 1 caso exista um caminho entre as cidades \code{i} e \code{j}, e 0 no caso contrário.\\
+	
+	\quest Faça uma função, que dada uma matriz \code{A} representando o tabuleiro, diga se existe uma ligação entre duas cidades, \code{i} e \code{j}, mesmo que passando por outras no percurso.\\
 
-	\pagebreak	
+	\example
+	\begin{lstlisting}
+>>> A = [[ 1, 0, 0, 1, 0],
+		 [ 0, 1, 0, 0, 1],
+		 [ 0, 0, 1, 0, 1],
+		 [ 1, 0, 0, 1, 0],
+		 [ 0, 1, 1, 0, 1]]
+	\end{lstlisting}
+	
+	Em um caso simplificado, essa matriz representa o seguinte tabuleiro:
+	
+	\input{tabuleiro.tikz}
+	
+	Dessa forma, teríamos:
+	\begin{lstlisting}
+>>> tem_caminho(A, 0, 1)
+False
+>>> tem_caminho(A, 0, 3)
+True
+>>> tem_caminho(A, 1, 2) # Passando pela cidade `4`
+True
+	\end{lstlisting}
+
+	\textbf{Desafio Bônus:} Para uma matriz \code{A}, e para um par de cidades \code{i} e \code{j}, faça uma outra função que calcule a menor distância entre as duas, segundo o mapa representado por \code{A}. Quando não houver caminho possível, lembre de retornar \stmt{None}\\
+	
+	\example
+	\begin{lstlisting}
+>>> distancia(A, 0, 1)
+None
+>>> distancia(A, 0, 3)
+1
+>>> distancia(A, 1, 2) # Passando pela cidade `4`
+2
+	\end{lstlisting}
+
+	\pagebreak
+	
+	\problem[0]{Gerando números aleatórios}
+	
+	Quando pensamos em gerar números aleatórios, temos em mente duas características: Um intervalo de ocorrência desses números e a sua distribuição. Por enquanto, vamos ficar com uma distribuição uniforme, isto é, os números em um intervalo $[a, b]$ tem igual probabilidade de serem gerados.
+	
+	\input{distribuicoes.tikz} 
+	
+	\pagebreak
+	
+	\problem[0]{Calculando $\pi$}
+	
+	Uma maneira, dentre muitas outras, de se calcular a área qualquer de uma região do plano é conhecida como Método de Monte Carlo. Esta técnica já é amplamente conhecida e seu estudo já se tornou bastante sofisticado. Mesmo assim, sua ideia fundamental pode ser compreendida facilmente.\\
+	
+	Temos uma região sombreada (em \textbf{\textcolor{blue}{azul}}) e queremos saber sua área. Sorteamos então 20 pontos aleatoriamente dentro do quadrado $6 \times 6$ que envolve a figura.
+	
+	\input{regiao.tikz}
+	
+	Estão coloridos em \textbf{\textcolor{cyan}{ciano}} os pontos que caíram dentro da região e temos em \textbf{\textcolor{magenta}{magenta}} aqueles que ficaram do lado de fora. Podemos então dizer que a razão entre os pontos que caíram dentro e o total sorteado se aproxima da razão entre a área hachurada e a área do quadrado. Isso nos dá uma fórmula para aproximar a área que desejamos calcular:
+	
+	$$\text{Área}_{\resizebox{12pt}{!}{\begin{tikzpicture}\makeregion\end{tikzpicture}}} \approx \text{Área}_{\square} \times \frac{\text{\textbf{\textcolor{cyan}{dentro}}}}{\text{\textbf{\textcolor{cyan}{dentro}}} + \text{\textbf{\textcolor{magenta}{fora}}}}$$
+	
+	\quest Agora pense no caso de um círculo de raio 1 inscrito em um quadrado $2 \times 2$. Utilize a técnica acima para calcular a sua área, que pode ser usada para obter uma aproximação do número $\pi$. Quanto mais pontos sortearmos, melhor será a aproximação.\\
+	
+	\clue Relembre o exercício\bref{sec:2.1} em que você dizia se um ponto pertencia ou não ao interior de um círculo unitário.
+	
 \end{document}
